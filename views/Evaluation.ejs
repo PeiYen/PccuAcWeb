@@ -1,0 +1,83 @@
+<% include header %>
+<div style="border:1px solid #a9c9e2;background-image: linear-gradient(to top , #FFC9C9, #FFFFFF);width:50vw;height:75vh;vertical-align:middle;margin-left:25vw;border-radius:20px;margin-top:5vh;" >
+	<div align="center" valign="middle" style="height:15vh;background-image: linear-gradient(to bottom , #48c6ef, #6f86d6);line-height:15vh;border-top-left-radius:20px;border-top-right-radius:20px;">
+		<font face="微軟正黑體" size="6"><b>評價商品</b></font>
+	</div>
+	<div style="height:50vh;">
+		<br/>
+		<img src="../uploadimg/<%= pub.Cover %>" style="height:15vh;margin-left:2vw;border:1px black solid;">
+		<font face="微軟正黑體" size="5" style="padding-left:2vw;color:blue"><b>商品名稱：<%= pub.product %></b></font>
+		<br/><br/>
+		<font face="微軟正黑體" size="4" style="margin-left:2vw;"><b>評分：</b></font><br/>
+		<p class="starWrapper" onmouseover="rate(this,event)"> 
+			<img src="../images/WHITE.png" title="1分" value="1" />
+			<img src="../images/WHITE.png" title="2分" value="2" />
+			<img src="../images/WHITE.png" title="3分" value="3" />
+			<img src="../images/WHITE.png" title="4分" value="4" />
+			<img src="../images/WHITE.png" title="5分" value="5" /> 
+		</p>
+		<form method="post" onsubmit="return check();">
+			<input type="hidden" id="Eva" name="Eva" /> <!-- 評分 -->
+			<b><font face="微軟正黑體" size="4" style="margin-left:2vw;color:red" id="EvaNum"></font></b>
+			<br/>
+			<font face="微軟正黑體" size="4" style="margin-left:2vw;"><b>意見回饋：</b></font><br/>
+			<textarea required="required" style="margin-left:2vw;margin-right:2vw;width:46vw;height:20vh" id="opinion" name="opinion"></textarea>
+			<br/>
+			<button type="submit" class="btn btn-info" style="margin-left:42vw;width:6vw;">評價提交</button>
+		</form>
+	</div>
+</div>
+<style type="text/css"> 
+.starWrapper{border:1px solid #FFCC00;padding:5px;width:130px;margin-left:2vw;} 
+.starWrapper img{cursor:pointer;} 
+</style> 
+<script>
+	function check(){
+		if(document.getElementById('Eva').value == ""){
+			alert('請評價分數');
+			return false;
+		}
+		else{
+			return true;
+		}
+	};
+</script>
+<script type="text/javascript"> 
+function rate(obj,oEvent){ 
+//================== 
+// 圖片地址設置 
+//================== 
+var imgSrc = "../images/WHITE.png"; //沒有填色的星星
+var imgSrc_2 = "../images/YELLOW.png"; //打分後有顏色的星星
+//--------------------------------------------------------------------------- 
+// if(obj.rateFlag) return; 	只能選一次分數
+var e = oEvent || window.event; 
+var target = e.target || e.srcElement;  
+var imgArray = obj.getElementsByTagName("img"); 
+for(var i=0;i<imgArray.length;i++){ 
+   imgArray[i]._num = i; 
+   imgArray[i].onclick=function(){ 
+    // if(obj.rateFlag) return; 只能選一次分數
+    // obj.rateFlag=true; 		只能選一次分數
+    document.getElementById('Eva').value = (this._num+1);
+    document.getElementById('EvaNum').innerHTML = "您的評分為 " + (this._num+1) + " 分";
+    //alert(this._num+1);       this._num+1這個數字寫入到數據庫中,作為評分的依據
+   }; 
+} 
+if(target.tagName=="IMG"){ 
+   for(var j=0;j<imgArray.length;j++){ 
+    if(j<=target._num){ 
+     imgArray[j].src=imgSrc_2; 
+    } else { 
+     imgArray[j].src=imgSrc; 
+    } 
+   } 
+} 
+// else { 
+//    for(var k=0;k<imgArray.length;k++){ 
+//     imgArray[k].src=imgSrc; 
+//    } 
+// } 
+} 
+</script> 
+<% include footer %>

@@ -1,0 +1,64 @@
+<% include header %>
+<script>
+	var picname = new Array();
+	  picname[0] = "../images/0.jpg";    picname[1] = "../images/1.jpg";
+      picname[2] = "../images/2.jpg";    picname[3] = "../images/3.jpg";
+      picname[4] = "../images/4.jpg";    picname[5] = "../images/5.jpg";
+      picname[6] = "../images/6.jpg";    picname[7] = "../images/7.jpg";
+      picname[8] = "../images/8.jpg";    picname[9] = "../images/9.jpg";
+      a= 0;
+      chk=100000;//六位數驗證碼
+	function isEmail(strEmail) {  //限制電子郵箱格是為文大
+		if (strEmail.search(/^[Aa][0-9]{7}@[g]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("mail").className="form-group has-success"; 
+		document.getElementById("acc").innerHTML=""; //innerHTML為更改文字內容
+		}
+		else if (strEmail.search(/^[Aa][0-9]{7}@[u][l][i][v][e]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("mail").className="form-group has-success"; 
+		document.getElementById("acc").innerHTML=""; //innerHTML為更改文字內容
+		}
+		else{
+		document.getElementById("mail").className="form-group has-error"; 
+		document.getElementById("acc").innerHTML="請輸入正確文大電郵格式";
+		}
+	}
+	function ispassword(pw1){    //限制密碼8~20個第一個為任一英文字母 
+		if(pw1.search(/^(?=.*[A-Za-z])(?=.*\d).{8,20}$/) != -1){
+			document.getElementById("pwformat").className="form-group has-success";
+			document.getElementById("pw").innerHTML="";
+			return true; 
+		}
+		else{
+			document.getElementById("pwformat").className="form-group has-error"; 
+			document.getElementById("pw").innerHTML="請輸入要有一個英文和數字所組成8~20的密碼";
+		}
+	}
+	function check(){
+		if(document.getElementById("ChkNum").value==""){
+ 				document.getElementById("ChkNumber").className="form-group has-error";
+ 				document.getElementById("chkl").innerHTML="還沒有輸入驗證碼";
+                document.getElementById("Sublog").disabled=true;
+            }
+            else if (document.getElementById("ChkNum").value!=a){
+				document.getElementById("ChkNumber").className="form-group has-error";
+				document.getElementById("chkl").innerHTML="請輸入正確的驗證碼";
+                document.getElementById("Sublog").disabled=true;   	
+            }
+                else{
+                document.getElementById("ChkNumber").className="form-group has-success"; 
+                document.getElementById("chkl").innerHTML=""; 
+                document.getElementById("Sublog").disabled=false;
+            }
+	}
+	function Checkform(){ //核對所有欄位都為success的狀態
+		var chmail = document.getElementById("mail").className;
+		var chpw = document.getElementById("pwformat").className;
+		if(chmail  == "form-group has-success" && chpw == "form-group has-success"){
+			return true;
+		}
+		else {
+			alert("請確認輸入資料是否正確!!");
+			event.preventDefault();	
+		}
+	}
+</script>

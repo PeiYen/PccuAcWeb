@@ -1,0 +1,81 @@
+<% include header %>
+<script>
+	function isEmail(strEmail) {  //限制電子郵箱格是為文大
+		if (strEmail.search(/^[Aa][0-9]{7}@[g]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("mail").className="form-group has-success"; 
+		document.getElementById("acc").innerHTML=""; //innerHTML為更改文字內容
+		}
+		else if (strEmail.search(/^[Aa][0-9]{7}@[u][l][i][v][e]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("mail").className="form-group has-success"; 
+		document.getElementById("acc").innerHTML="";
+		}
+		else{
+		document.getElementById("mail").className="form-group has-error"; 
+		document.getElementById("acc").innerHTML="請輸入正確文大電郵格式";
+		}
+	}
+	function ispassword(pw1){    //限制密碼8~20個且必須含一個英文和數字 
+		if(pw1.search(/^(?=.*[A-Za-z])(?=.*\d).{8,20}$/) != -1){
+			document.getElementById("pwformat").className="form-group has-success";
+			document.getElementById("pw").innerHTML="";
+			return true; 
+		}
+		else
+			document.getElementById("pwformat").className="form-group has-error"; 
+			document.getElementById("pw").innerHTML="至少要有一個英文和數字所組成8~20的密碼";
+	}
+	function pwdcheck(pw1){
+		if(pw1 != document.getElementById("pwd1").value){
+			document.getElementById("pwok").className="form-group has-error";
+			document.getElementById("pwc").innerHTML="與密碼不相同";
+		}
+		else{
+			document.getElementById("pwok").className="form-group has-success";
+			document.getElementById("pwc").innerHTML="";
+		}
+	}
+	function ispwok(pw2){ //確認密碼與密碼相同
+		if(pw2==document.getElementById("pwd").value){
+			document.getElementById("pwok").className="form-group has-success";
+			document.getElementById("pwc").innerHTML="";
+		}
+		else{
+		document.getElementById("pwok").className="form-group has-error";
+		document.getElementById("pwc").innerHTML="與密碼不相同";
+		}
+	}
+	function isName(Name){ //限制中文英文名字格式
+		if(Name.search(/^[\u4e00-\u9fa5]{2,}$/) !=-1 || Name.search(/^[A-Za-z]{2,}$/) !=-1 ){  // \u4e00-\u9fa5 中文正規
+			document.getElementById("Name1").className="form-group has-success";
+			document.getElementById("name").innerHTML="";
+		}
+		else{
+		document.getElementById("Name1").className="form-group has-error";	
+		document.getElementById("name").innerHTML="請確認名字是否大於2個字且不含數字特殊符號";
+		}
+	}
+	function Checkphone(PNumber){ //限制電話號碼格式
+		if(PNumber.search(/^[0][9][0-9]{8}$/) !=-1){
+			document.getElementById("PhoneNumber").className="form-group has-success";
+			document.getElementById("tel").innerHTML="";
+		}
+		else{
+			document.getElementById("PhoneNumber").className="form-group has-error";
+			document.getElementById("tel").innerHTML="請輸入正確電話號碼十碼(前兩碼為09)";
+		}
+	}
+	function Checkform(){ //核對所有欄位都為success的狀態
+		var chmail = document.getElementById("mail").className;
+		var chpw = document.getElementById("pwformat").className;
+		var chpw1 = document.getElementById("pwok").className;
+		var chname = document.getElementById("Name1").className;
+		var chpnb = document.getElementById("PhoneNumber").className;		
+		if((chmail == "form-group has-success")&&(chpw == "form-group has-success")&&(chpw1 == "form-group has-success")&&(chname == "form-group has-success")&&(chpnb == "form-group has-success")){
+			return true;
+		}
+		else {
+			alert("請確認輸入資料是否符合格式!!");
+			return false;
+		}
+	}
+</script>

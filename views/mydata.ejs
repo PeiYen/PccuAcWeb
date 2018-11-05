@@ -1,0 +1,12 @@
+<% include nav %>
+	<div style="margin-left: 5vw;padding-left:2vw;padding-top:1vh;width: 90vw;height:85vh;border-radius: 25px;border:1px solid blue;display:block;position:absolute;">
+        <div style="line-height:100px;height:100px;">
+		<font face="微軟正黑體" size="6">學校信箱：<%= user.account %></font><br/>
+		<font face="微軟正黑體" size="6">帳戶姓名：<%= user.name %></font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/routes/chname"><button class="btn btn-info btn-lg">更改姓名</button></a>
+        <br/>
+        <font face="微軟正黑體" size="6">聯絡方式：0<%= user.phone %></font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/routes/chPhone"><button class="btn btn-info btn-lg">更改電話</button></a>
+        <br/>
+        <font face="微軟正黑體" size="5">如需更改密碼請點擊：<a href="/routes/check">更改密碼</a></font>
+        </div>
+	</div>
+<% include footer %>

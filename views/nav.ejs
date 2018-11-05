@@ -1,0 +1,46 @@
+<% include header %>
+<nav class="navbar navbar-inverse bg-primary" style="height:9vh;line-height:9vh;">	
+		<div class="container-fluid">
+			<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    		<span class="icon-bar"></span>
+                    		<span class="icon-bar"></span>
+                    		<span class="icon-bar"></span> 
+                		</button>
+            </div>
+					
+	 			<div class="collapse navbar-collapse" id="myNavbar">	
+
+	  			<ul class="nav navbar-nav navbar-left" >
+	  				<li style="right:1.5vw;"><a href="/"><img src="..\images\logo.png"  width="140" height="33" style="height:5vh;"></a></li> 
+	    			<li class="dropdown dropdown-submenu" style="right:1vw;"><a href="#" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" id="dropdownMenuLink">
+	    				<font size="5" face="微軟正黑體">我的拍賣<span class="glyphicon glyphicon-triangle-bottom "></span></font></a> <!-- <span class="badge badge-secondary">New</span> badge語法 -->
+	    				<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
+	    					<li class="dropdown-header"><font size="5" face="微軟正黑體"><b>擔任賣家</b></font></li>
+	    					<li><a href="/routes/MyPub" ><font size="5" face="微軟正黑體"><b>我的拍賣商品</b></font></a></li>
+	    					<% if(order.length == 0) { %>
+	    					<li><a href="/routes/order" ><font size="5" face="微軟正黑體"><b>賣家訂單查詢&nbsp;</b><span class="badge badge-secondary"><%= order.length %></span></font></a></li>
+	    					<% } else { %>
+	    					<li><a href="/routes/order" ><font size="5" face="微軟正黑體"><b>賣家訂單查詢&nbsp;</b><span class="badge alert-danger"><%= order.length %></span></font></a></li>
+	    					<% } %>
+	    					<li><a href="/routes/ordersession" ><font size="5" face="微軟正黑體"><b>訂單紀錄查詢</b></font></a></li>
+	    					<li><a href="/routes/sell"><font size="5" face="微軟正黑體"><b style="color:#009FCC;"><span class="glyphicon glyphicon-pencil"></span>刊登商品</b></font></a></li>
+	    					<li class="divider"></li><!--分隔線-->
+	    					<li class="dropdown-header"><font size="5" face="微軟正黑體"><b>擔任買家</b></font></li>
+	    					<li><a href="/routes/confirm" ><font size="5" face="微軟正黑體"><b>購買商品查詢</b></font></a></li>
+	    					<li><a href="/routes/Shopcart"><font size="5" face="微軟正黑體"><b style="color:#E63F00;"><span class="glyphicon glyphicon-shopping-cart"></span>追蹤商品</b></font></a></li>	
+	    				</ul>
+	    			</li>							
+	 			</ul>
+
+
+
+				<ul class="nav navbar-nav navbar-right">	
+
+					<li><a href="/routes/mydata"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font></a></li>
+							<!--登出-->		
+				    <li><a href="/routes/logout"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-log-out"></span>登出</font></a></li>
+				</ul>
+			</div>	
+		</div>
+	</nav>

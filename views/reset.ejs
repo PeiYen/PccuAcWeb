@@ -1,0 +1,43 @@
+<% include header %>
+<body>
+	<div style="margin-left: 35vw;width:30vw;height:40vh;margin-top:30vh;">
+		<P><font face="微軟正黑體"><font size="6px"><b>重發驗證信</b></font></font></P>	
+		<form role="form" name="register" id="register"  method="post" autocomplete="off" onsubmit="return retform();">
+			<ul>
+				<div class ="form-group" id="retmail">
+					<label for="email">帳號（請使用學校信箱）：</label><label id="acc1" for="retemail" class="control-label"></label>
+					<input id="retemail" class="form-control body" name="retemail" size="25" type="email" maxlength="40" placeholder="Example：A1234567@g.pccu.edu.tw or @ulive.pccu.edu.tw" onkeyup="retEmail(this.value)">		
+				</div>
+				<button type="submit" class="btn btn-warning body" name="submit" id="submit" value="resetcode">重發驗證信</button>	
+			</ul>
+		</form>
+	</div>
+<script >
+	function retEmail(strEmail) {  //限制電子郵箱格是為文大
+		if (strEmail.search(/^[Aa][0-9]{7}@[g]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("retmail").className="form-group has-success"; 
+		document.getElementById("acc1").innerHTML=""; //innerHTML為更改文字內容
+		}
+		else if (strEmail.search(/^[Aa][0-9]{7}@[u][l][i][v][e]\.[p][c][c][u]\.[e][d][u]\.[t][w]$/) != -1){
+		document.getElementById("retmail").className="form-group has-success"; 
+		document.getElementById("acc1").innerHTML="";
+		}
+		else{
+		document.getElementById("retmail").className="form-group has-error"; 
+		document.getElementById("acc1").innerHTML="請輸入正確文大電郵格式";
+		}
+	}
+	function retform(){ //核對所有欄位都為success的狀態
+		var chmail = document.getElementById("retmail").className;	
+		if(chmail == "form-group has-success"){
+			return true;
+		}
+		else {
+			alert("請確認輸入資料是否符合格式!!");
+			return false;
+		}
+	}
+</script>
+
+
+<% include footer %>

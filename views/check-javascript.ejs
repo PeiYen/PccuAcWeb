@@ -1,0 +1,43 @@
+<% include header %>
+<script>
+function ispassword(pw1){    //限制密碼8~20個且必須含一個英文和數字 
+		if(pw1.search(/^(?=.*[A-Za-z])(?=.*\d).{8,20}$/) != -1){
+			document.getElementById("pwformat").className="form-group has-success";
+			document.getElementById("pw").innerHTML="";
+			return true; 
+		}
+		else
+			document.getElementById("pwformat").className="form-group has-error"; 
+			document.getElementById("pw").innerHTML="至少要有一個英文和數字所組成8~20的密碼";
+	}
+	function pwdcheck(pw1){
+		if(pw1 != document.getElementById("pwd1").value){
+			document.getElementById("pwok").className="form-group has-error";
+			document.getElementById("pwc").innerHTML="與密碼不相同";
+		}
+		else{
+			document.getElementById("pwok").className="form-group has-success";
+			document.getElementById("pwc").innerHTML="";
+		}
+	}
+	function ispwok(pw2){ //確認密碼與密碼相同
+		if(pw2==document.getElementById("pwd").value){
+			document.getElementById("pwok").className="form-group has-success";
+			document.getElementById("pwc").innerHTML="";
+		}
+		else{
+		document.getElementById("pwok").className="form-group has-error";
+		document.getElementById("pwc").innerHTML="與密碼不相同";
+		}
+	}
+function Checkform(){ //核對所有欄位都為success的狀態
+		var chpw = document.getElementById("pwformat").className;
+		var chpw1 = document.getElementById("pwok").className;
+		if(chpw  == "form-group has-success"&& chpw1 == "form-group has-success"){
+			return true;
+		}
+		else 
+			alert("請確認輸入資料是否正確!!");
+			event.preventDefault();
+}
+</script>

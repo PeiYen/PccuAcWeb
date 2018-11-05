@@ -1,0 +1,52 @@
+<% include header %>
+<body>
+<div class="container" align="center">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">更改電話</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="post" autocomplete="off"> <!--action 為 後端change-->
+                            <fieldset>
+                                <div class="form-group" id="newphone">
+                                    <label for="newphone" class="control-label" id="Npas"></label>
+                                    <font face="微軟正黑體">
+                                    <input class="form-control" placeholder="0<%= user.phone %>" type="text" name="newphone" id="newphone" onkeyup="Checkphone(this.value);" maxlength="10">
+                                    </font>
+                                </div>
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="更改" onclick="Checkform()">                           
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+		function Checkphone(PNumber){ //限制電話號碼格式
+		if(PNumber.search(/^[0][9][0-9]{8}$/) !=-1){
+			document.getElementById("newphone").className="form-group has-success";
+			document.getElementById("Npas").innerHTML="";
+		}
+		else if(PNumber==""){
+			document.getElementById("newphone").className="form-group";
+			document.getElementById("Npas").innerHTML="";
+		}
+		else{
+			document.getElementById("newphone").className="form-group has-error";
+			document.getElementById("Npas").innerHTML="輸入電話號碼為09開頭10碼";
+		}
+	}
+	function Checkform(){ //核對所有欄位都為success的狀態
+		var chphone= document.getElementById("newphone").className;
+		if(chphone == "form-group has-success" ){
+			return true;
+		}
+		else {
+			event.preventDefault();
+		}
+	}
+</script>
+<% include footer %>

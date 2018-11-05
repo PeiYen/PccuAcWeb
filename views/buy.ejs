@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <title>文大拍賣網</title>
+		
+</head>
+
+
+
+
+
+<body>
+<form method="post" action="/routes/buy">	
+	<table class="table-striped table-bordered" width="60%" style="font-size:24px;" valign="middle" align="center">
+		<thead valign="middle" align="center">
+			<tr>
+				<td width="40%" align='center' valign="middle"><font face="微軟正黑體" style="top:5px;"><b>商品名稱</b></font></td>
+				<td width="30%" align='center' valign="middle"><font face="微軟正黑體" style="top:5px;"><b>訂購數量</b></font></td>
+				<td width="30%" align='center' valign="middle"><font face="微軟正黑體" style="top:5px;"><b>價錢合計</b></font></td>
+			</tr>
+		</thead>
+		<tbody style="background-color:#ffffff">
+			<tr>
+				<td>
+					<div style="text-align:center">
+						<input type="hidden" name="id" id="id" value="<%= pub._id %>">
+						<input type="hidden" name="account" id="account" value="<%= pub.account %>">
+						<input type="hidden" name="name" id="name" value="<%= pub.name %>">
+						<input type="hidden" name="phone" id="phone" value="<%= pub.phone %>">
+						<input type="hidden" name="cover" id="cover" value="<%= pub.Cover %>">
+						<font face="微軟正黑體" style="top:5px;"><b><%= pub.product %></b></font><br/>
+						<input type="hidden" name="product" id="product" value="<%= pub.product %>">
+						<img src="..\uploadimg\<%= pub.Cover %>" style="max-height: 100%;  max-width: 100%;"/>
+					</div>
+				</td>
+				<td>
+					<div style="text-align:center">
+						<font face="微軟正黑體" style="top:5px;"><b><%= quantity %>個</b></font>
+						<input type="hidden" name="quantity" id="quantity" value="<%= quantity %>"> <!--訂購數量-->
+					</div>
+				</td>
+				<td>
+					<div style="text-align:center">
+						<font face="微軟正黑體" style="top:5px;"><b><%= totalprice %><font color="#FFBF00">$</font></b></font>
+						<input type="hidden" id="price" name="price" value="<%= pub.price %>">	<!--總價格-->
+						<input type="hidden" id="PubNum" name="PubNum" value="<%= totalprice %>">	<!--總價格-->
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>
+	<div style="text-align:center">
+		<button type="submit" class="btn btn-outline-info btn-secondary btn-lg" style="font-size: 25px;"><font face="微軟正黑體">購買商品</font></button>
+	</div>
+</form>
+<% include footer %>

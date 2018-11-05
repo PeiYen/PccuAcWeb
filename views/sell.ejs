@@ -1,0 +1,265 @@
+<% include nav %>
+<body>
+	<div id="container"> <!--頁面邊界-->			
+	    <br>	    
+	    	<form role="form" name="sell" id="sell"  method="post" autocomplete="off" enctype="multipart/form-data" onsubmit="return Sellform();">
+			 	<div class="form-group" >
+			 		<table border="0" width="75%" align="center" cellpadding="pixels" valign="center">
+					    <tr>
+					    	<td colspan="1" width="210px" style="text-align:left;background-image:url(../images/gray.jpg);"><label><font color="black">商品名稱：</font></label></td>
+					    	<td colspan="3" style="background:#FFFAFA" id = ""><input maxlength="20" name="Prod" id="Prod" class="form-control input_form" style="width:200px"></td>
+					    </tr>
+					    <tr>
+					    	<td colspan="1"  style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品數量：</font></label></td>
+					    	<td colspan="3"  style="background:#FFFAFA"><input name="quantity" id="quantity" type="number" placeholder="最大為100"  min="1" max="100" class="form-control input_form" style="width:120px"></td>
+					    </tr>
+					    <tr>
+					    	<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品價格：</font></label></td>
+					    	<td colspan="3" style="background:#FFFAFA"><input name="price" id="price" type="number" min="1" max="100000000" class="form-control input_form" style="width:160px"></td>
+					    </tr>
+					    <tr>
+					    <td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><label><font color="black">類別：</font></label></td>
+						    <td colspan="3" style="background:#FFFAFA">
+						    	<select class="form-control" style="width:120px" id="Classification" name="Classification" >
+						    		<option value="">請選擇.....</option>
+									<option value="book">書籍</option>
+									<option value="clothes">衣物</option>
+									<option value="3C">3C用品</option>
+									<option value="furniture ">家電</option>
+									<option value="others">其他</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+				 			<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label ><font color="black">刊登商品封面</font></label></td>
+				 			<td colspan="3"  style="background:#FFFAFA">
+				    			<input type="file" id="Img1" name="Img1" onchange="openFile1(event)" accept="image/gif, image/jpeg, image/png" >
+				    			<img id="output1" height="120">
+				    		</td>
+				    	</tr>
+						<tr>
+							<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label ><font color="black">上傳商品照片：(上限為9張)</font></label></td>
+				    		<td colspan="3" style="background:#FFFAFA">
+				    			<!-- <img id="output2" height="120">
+				    			<font color="white"><input type="file" id="Img2" name="Img2" onchange="openFile2(event)"></font>
+				    		<td colspan="1" style="background-image:url(../images/brown.jpg)">
+				    			<img id="output3" height="120">
+				    			<font color="white"><input type="file" id="Img3" name="Img3" onchange="openFile3(event)"></font>
+				    		</td> -->
+
+				    			<!-- <form   method="post" action="/routes/sell"> -->
+   									<input type="file" id="Img" name="Img" accept="image/gif, image/jpeg, image/png" multiple/ >
+  									 	<div id="preview_progressbarTW_imgs" style="width:100%; height:225px;overflow:auto;">
+  									     	<p id ="error" value="zero" style='color:#CC0000'>目前沒有圖片，圖片大小請勿超過16MB</p>
+     									</div>
+								<!-- </form>		 -->
+							</td>
+				 		</tr>
+				 		<tr>
+				 		<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品狀況：</font></label><br></td>
+							<td colspan="3" style="background:#FFFAFA">
+								<select class="form-control" style="width:120px" id="Pstatus" name="Pstatus" >
+									<option value="">請選擇.....</option>
+									<option value="全新">全新</option>
+									<option value="二手">二手</option>
+								</select>
+								<!-- <label><font color="white">全新：</font><input type=radio name=Pstatus id=Pstatus value="全新"></label> 
+				        		<label><font color="white">二手：</font><input type=radio name=Pstatus id=Pstatus value="二手"></label>  -->
+				        	</td>
+				        </tr>
+				        <td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg);"><label><font color="black">商品介紹：</font></label><br></td>
+				        <td colspan="3" style="background:#FFFAFA">
+				        	<textarea class="form-control"  rows="3" id="Introduce" name="Introduce" style="resize:none;"></textarea>
+                		</td>
+                		
+   			        </table>
+   			        		<div align="center">
+			 					<b><font style="color:#DC143C;">本人刊登的商品不會再自己的首頁顯示，可透過標籤列 -> 我的拍賣 -> 我的拍賣商品中進行查看！！！</font></b>	
+			 				</div>
+			 				<br/>
+   			        		<div align="center">
+			 					<button type="submit" class="btn btn-primary body">刊登</button>
+			 				</div>
+			 				<br/>
+			 			
+			 				<br/>
+   			        		<div  align="center">
+   			        			<img src="../images/down.png" width="224" height="52">
+   			        		</div>
+   			       
+			 	</div>
+			 	
+			</form>	
+
+
+
+	<!-- JavaScript part -->
+<script>
+$("#Img").change(function(){
+  $("#preview_progressbarTW_imgs").html(""); // 清除預覽
+  readURL(this);
+});
+
+function readURL(input){
+	if(input.files.length<=9 && input.files.length>0){//0~9張
+  		if (input.files && input.files.length >= 0) {
+    		for(var i = 0; i < input.files.length; i ++){
+      			var reader = new FileReader();
+      			reader.onload = function (e) {
+        		var img = $("<img width='250'  vspace='5' hspace='5'>").attr('src', e.target.result);//vspace hspace 為img src間距
+        		$("#preview_progressbarTW_imgs").append(img);
+      			}		
+      			reader.readAsDataURL(input.files[i]);
+    		}
+  		}
+  		else{
+     		var noPictures = $("<p id ='error' value='zero' style='color:#CC0000'>目前沒有圖片</p>");
+     		$("#preview_progressbarTW_imgs").append(noPictures);
+  		}
+	}
+	else if (input.files.length == 0){
+		var noPictures = $("<p id ='error' value='zero' style='color:#CC0000'>目前沒有圖片</p>");
+     		$("#preview_progressbarTW_imgs").append(noPictures);
+	}
+	else{
+		var noPictures = $("<p id ='error' value='exceed' style='color:#CC0000';>圖片請勿超過九個</p>");
+     		$("#preview_progressbarTW_imgs").append(noPictures);
+	}
+	console.log(input.files.length);
+}
+
+function openFile1(event){
+  var input = event.target; //取得上傳檔案
+  var reader = new FileReader(); //建立FileReader物件
+
+  reader.readAsDataURL(input.files[0]); //以.readAsDataURL將上傳檔案轉換為base64字串
+
+  reader.onload = function(){ //FileReader取得上傳檔案後執行以下內容
+    var dataURL = reader.result; //設定變數dataURL為上傳圖檔的base64字串
+    $('#output1').attr('src', dataURL).show(); //將img的src設定為dataURL並顯示
+  };
+}
+$("#Img1").change(function(){
+	if(document.getElementById("Img1").files.length == 0){				//沒上傳圖片時
+  		document.getElementById("output1").style.visibility = "hidden"; // 清除預覽
+	}
+	else{
+		document.getElementById("output1").style.visibility = "visible"; //當有圖片則顯示
+	}
+});
+
+
+// function openFile2(event){
+//   var input = event.target; //取得上傳檔案
+//   var reader = new FileReader(); //建立FileReader物件
+
+//   reader.readAsDataURL(input.files[0]); //以.readAsDataURL將上傳檔案轉換為base64字串
+
+//   reader.onload = function(){ //FileReader取得上傳檔案後執行以下內容
+//     var dataURL = reader.result; //設定變數dataURL為上傳圖檔的base64字串
+//     $('#output2').attr('src', dataURL).show(); //將img的src設定為dataURL並顯示
+//   };
+// }
+
+// function openFile3(event){
+//   var input = event.target; //取得上傳檔案
+//   var reader = new FileReader(); //建立FileReader物件
+
+//   reader.readAsDataURL(input.files[0]); //以.readAsDataURL將上傳檔案轉換為base64字串
+
+//   reader.onload = function(){ //FileReader取得上傳檔案後執行以下內容
+//     var dataURL = reader.result; //設定變數dataURL為上傳圖檔的base64字串
+//     $('#output3').attr('src', dataURL).show(); //將img的src設定為dataURL並顯示
+//   };
+// }
+function Sellform(){
+	var Prod = document.getElementById("Prod").value;                       //商品名稱
+	var quantity = document.getElementById("quantity").value;				//商品數量
+	var price = document.getElementById("price").value;	
+	var Classification = document.getElementById("Classification").value;	//類別
+	var Cover = document.getElementById("Img1").files.length;				//封面圖片
+	var Img = document.getElementById("Img").files.length;					//圖片 (Img == "zero") || (Img == "exceed")
+	var Pstatus = document.getElementById("Pstatus").value;					//商品狀況
+	var Introduce = document.getElementById("Introduce").value;				//商品介紹
+	if(Prod == ""){
+		alert("請輸入商品名稱!!");
+		return false;
+		console.log(input.files.length);
+	}
+	else if(quantity == ""){
+		alert("請輸入商品數量!!");
+		return false;
+	}
+	else if(price == ""){
+		alert("請輸入商品價格!!");
+		return false;
+	}
+	else if(Classification == ""){
+		alert("請選擇商品類別!!");
+		return false;
+	}
+	else if(Cover == 0){
+		alert("請上傳封面圖片!!");
+		return false;
+	}
+	else if(Img == 0){
+		alert("請上傳商品圖片!!");
+		return false;
+	}
+	else if(Img > 9){
+		alert("請勿上傳超過9張圖片!!");
+		return false;
+	}
+	else if(Pstatus == ""){
+		alert("請選擇商品狀況!!");
+		return false;
+	}
+	else if(Introduce == ""){
+		alert("請輸入商品介紹!!");
+		return false;
+	}
+	else{
+		console.log(document.getElementById("Img1").files.size);
+		return true;
+	}
+}
+</script>	
+
+<style type="text/css">
+table{
+  margin: auto;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+tr{
+  border: 1px solid #444444;
+}
+td{
+  border: 1px solid #444444;
+  padding: 5px 5px;
+  /*background-color: #E0607E;*/
+  /*color: #FFF;*/
+}
+
+/*第一欄第一列：左上*/
+tr:first-child td:first-child{
+  border-top-left-radius: 10px;
+}
+/*第一欄最後列：左下*/
+tr:last-child td:first-child{
+  border-bottom-left-radius: 10px;
+}
+/*最後欄第一列：右上*/
+tr:first-child td:last-child{
+  border-top-right-radius: 10px;
+}
+/*最後欄第一列：右下*/
+tr:last-child td:last-child{
+  border-bottom-right-radius: 10px;
+}
+</style>
+
+</body>
+
+<% include footer %>

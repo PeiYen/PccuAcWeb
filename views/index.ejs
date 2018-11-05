@@ -1,0 +1,303 @@
+<% include header %>
+<script src="../js/pagination.js"></script>
+<script src="../js/pagination.min.js"></script>
+<body style="overflow-y:hidden;">
+ 	<nav class="navbar navbar-inverse" style="height:9vh;line-height:9vh;">	
+		<div class="container-fluid">
+			<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    		<span class="icon-bar"></span>
+                    		<span class="icon-bar"></span>
+                    		<span class="icon-bar"></span> 
+                		</button>
+            </div>
+						
+						<% if (loginStatus) { %>
+
+	 		<div class="collapse navbar-collapse" id="myNavbar">	
+
+	  			<ul class="nav navbar-nav navbar-left" >
+	  				<li style="right:1.5vw;"><a href="/"><img src="images\logo.png"  width="140" height="33" style="height:5vh;"></a></li> 
+	    			<li class="dropdown dropdown-submenu" style="right:1vw;"><a href="#" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" id="dropdownMenuLink">
+	    				<font size="5" face="微軟正黑體">我的拍賣<span class="glyphicon glyphicon-triangle-bottom "></span></font></a> <!-- <span class="badge badge-secondary">New</span> badge語法 -->
+	    				<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
+	    					<li class="dropdown-header"><font size="5" face="微軟正黑體"><b>擔任賣家</b></font></li>
+	    					<li><a href="/routes/MyPub" ><font size="5" face="微軟正黑體"><b>我的拍賣商品</b></font></a></li>
+	    					<% if(order.length == 0) { %>
+	    					<li><a href="/routes/order" ><font size="5" face="微軟正黑體"><b>賣家訂單查詢&nbsp;</b><span class="badge badge-secondary"><%= order.length %></span></font></a></li>
+	    					<% } else { %>
+	    					<li><a href="/routes/order" ><font size="5" face="微軟正黑體"><b>賣家訂單查詢&nbsp;</b><span class="badge alert-danger"><%= order.length %></span></font></a></li>
+	    					<% } %>
+	    					<li><a href="/routes/ordersession" ><font size="5" face="微軟正黑體"><b>訂單紀錄查詢&nbsp;</b></font></a></li>
+	    					<li><a href="/routes/sell"><font size="5" face="微軟正黑體"><b style="color:#009FCC;"><span class="glyphicon glyphicon-pencil"></span>刊登商品</b></font></a></li>
+	    					<li class="divider"></li><!--分隔線-->
+	    					<li class="dropdown-header"><font size="5" face="微軟正黑體"><b>擔任買家</b></font></li>
+	    					<li><a href="/routes/confirm" ><font size="5" face="微軟正黑體"><b>購買商品查詢</b></font></a></li>
+	    					<li><a href="/routes/Shopcart"><font size="5" face="微軟正黑體"><b style="color:#E63F00;"><span class="glyphicon glyphicon-shopping-cart"></span>追蹤商品</b></font></a></li>	
+	    				</ul>
+	    			</li>							
+	 			</ul>
+
+
+
+				<ul class="nav navbar-nav navbar-right">	
+
+					<li><a href="/routes/mydata"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font></a></li>
+							<!--登出-->		
+				    <li><a href="/routes/logout"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-log-out"></span>登出</font></a></li>
+				</ul>
+			</div>	
+		</div>
+	</nav>
+
+
+
+	<div id="container"> <!--頁面邊界-->	
+		<div class="col-md-2" style="top:-20px;left:-20px;">
+			<div  style="background-image:url(../images/backgroundleft.png);height:91vh;width:16.3vw">
+				<!-- <aside> -->
+		        <!-- 	<div style="padding:10px 14px;" align="center"> 邊界距離
+		        	<form>
+		        		<br/>
+		                <input type="text" id="Search" name="Search" autocomplete="off" style="width:150px"> 
+		                商品搜尋
+		                <button type="submit">全站搜尋</button>
+		            </form>		  
+		            <font size="5" face="微軟正黑體"><b></b></font>
+		            </div> -->
+		            <div style="padding:10px 15px;" >
+		            <form onsubmit="return price();">
+		                &nbsp;&nbsp;<input type="text" id="Search" name="Search" placeholder="請輸入關鍵字..." autocomplete="off" style="width:14.5vw;border-top-left-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-right-radius: 5px;"><br/><br/>
+		                &nbsp;&nbsp;<font size="4" face="微軟正黑體"><B>請選擇商品狀況</B></font><br/><br/>
+		         		&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="status" value="全新"  style="width:15px;height:15px"><B> 全新</B></font><br/><br/>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="status" value="二手"  style="width:15px;height:15px"><B> 二手</B></font><br/><br/>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><B>請選擇商品分類</B></font><br/><br/>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="Classification" value="book" style="width:15px;height:15px"><b> 書籍</b></font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="Classification" value="clothes" style="width:15px;height:15px"><b> 衣物</b></font><br/><br/>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="Classification" value="3C" style="width:15px;height:15px"><b> 3C用品</b></font>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="Classification" value="furniture" style="width:15px;height:15px"><b> 家電</b></font><br/><br/>
+						&nbsp;&nbsp;<font size="4" face="微軟正黑體"><input type="radio" name="Classification" value="others" style="width:15px;height:15px"><b> 其他</b></font><br/>
+						<% if (sort=="priceBIG") { %>
+			&nbsp;&nbsp;<select name="sort" class="form-control">
+						　<option id="Date" value="Date">按照日期排序</option>
+						　<option id="priceBIG" value="priceBIG" selected="selected">價格由大到小</option>
+						  <option id="priceSMALL" value="priceSMALL">價格由小到大</option>
+						</select>
+						<% } else if((sort=="priceSMALL")){ %>
+			&nbsp;&nbsp;<select name="sort" class="form-control">
+						　<option id="Date" value="Date">按照日期排序</option>
+						　<option id="priceBIG" value="priceBIG">價格由大到小</option>
+						  <option id="priceSMALL" value="priceSMALL" selected="selected">價格由小到大</option>
+						</select>	
+						<% } else { %>
+			&nbsp;&nbsp;<select name="sort" class="form-control">
+						　<option id="Date" value="Date">按照日期排序</option>
+						　<option id="priceBIG" value="priceBIG">價格由大到小</option>
+						  <option id="priceSMALL" value="priceSMALL" >價格由小到大</option>
+						</select>	
+						<% } %>
+						<br/>
+						<% if (min==0||max==0) { %>
+						價格搜尋：
+						<input style="width:3vw" type="number" placeholder="$最小值" id="minprice" name="minprice" min="1" onkeyup="price()" > －－ 
+						<input style="width:3vw" type="number" placeholder="$最大值" id="maxprice" name="maxprice" min="1" onkeyup="price()" >
+						<label id="err" style="color:red"></label>
+						<% } else { %>
+						價格搜尋：
+						<input style="width:3vw" type="number" placeholder="$最小值" id="minprice" name="minprice" min="1" onkeyup="price()" value="<%= min %>"> －－ 
+						<input style="width:3vw" type="number" placeholder="$最大值" id="maxprice" name="maxprice" min="1" onkeyup="price()" value="<%= max %>">
+						<label id="err" style="color:red"></label>
+						<% } %>
+						<script>
+						function price(){
+							var min = document.getElementById("minprice").value;
+							var max = document.getElementById("maxprice").value;
+							console.log(max);
+							if(min!="" && max!=""){
+								if(parseInt(min)>parseInt(max)){
+									document.getElementById("err").innerHTML="請輸入有效的範圍";
+									return false;
+								}
+								else{
+									document.getElementById("err").innerHTML="";
+									return true;
+								}
+							}
+							else if(min=="" && max==""){	
+								document.getElementById("err").innerHTML="";
+								return true;
+							}
+							else{
+								document.getElementById("err").innerHTML="請輸入有效的範圍";
+								return false;
+							}
+						}
+						</script>
+
+						<div align="center" style="margin-top:10px"><button type="submit" class="btn btn-info btn-md" >送出</button></div>
+					</form>
+		            </div> 	
+		    </div>
+	    </div>
+	    <script >
+		$(document).ready(function() {
+	      	var rowsShown=4;                             //每頁顯示的行
+	      	var rowsTotal=$('#data tr').length;          //獲取總共的行
+	      	var numPages=Math.ceil(rowsTotal/rowsShown); //計算出有多少頁
+	      	var nowPage = 0;							 //當前頁碼		
+	      	var Previous;								 //上一頁的順序						
+	      	//顯示頁碼，將頁面加入#nav內
+
+		    for(var i=0;i<numPages;i++){
+		         var pageNum=i+1;
+		         $('#nav').append('<a href="#" class="page-link" rel="'+i+'">'+pageNum+'</a>&nbsp;');
+		    }
+		    /* 初次分頁操作
+		     * 先將全部行隱藏
+		     * 再顯示第一頁應該顯示的行數(本示例為3)
+		     * 為第一個頁碼加一個值為active的class屬性，方便加樣式
+		     * */
+		    $('#data tr').hide();
+		    $('#data tr').slice(0,rowsShown).show();
+		    $('#nav a:first').addClass('active');
+		    $('#nav a:first').attr('id','now');
+		    //頁碼點擊事件
+		    $('#nav a').bind('click',function(){
+		        $('#nav a').removeClass('active');    //移除所有頁碼的active類
+		        $('#nav a').removeAttr('id');		  //移除所有頁碼的id
+		        $(this).addClass('active');           //為當前頁碼加入active類
+		        $(this).attr('id','now');			  //為現在的頁碼增加ID為now
+		        var currPage=$(this).attr('rel');     //取出頁碼上的值
+		        var startItem=currPage*rowsShown;     //行數的開始=頁碼*每頁顯示的行
+		        var endItem=startItem+rowsShown;      //行數的結束=開始+每頁顯示的行
+		        $('#data tr').hide();                 //全部行都隱藏0         
+		        //顯示從開始到結束的行
+		        $('#data tr').slice(startItem,endItem).css('display','table-row');
+		        nowPage = parseInt(document.getElementById("now").rel) ;
+		        console.log(nowPage);
+		    });
+		  
+		   	$('#Previous a').bind('click',function(){
+		   		if(nowPage == 0){													//第一頁是無法作用
+		   			return false;
+		   		}
+		   		else{
+		   			$('#now').removeAttr('id');
+		   			$('#now').removeClass('active'); 
+		   			$('#nav a:eq('+(nowPage-1)+')').attr('id','now'); 				//為當前頁面前一頁面增加id欄位值=now
+		   			$('#nav a:eq('+(nowPage-1)+')').addClass('active');				//為當前頁面前一頁面class增加屬性active
+		   			var currPage=$('#nav a:eq('+(nowPage-1)+')').attr('rel');     	//取出前一頁頁碼上的值
+		        	var startItem=currPage*rowsShown;    							//行數的開始=頁碼*每頁顯示的行
+		        	var endItem=startItem+rowsShown;     							//行數的結束=開始+每頁顯示的行
+		        	$('#data tr').hide();                 							//全部行都隱藏0         
+		        	//顯示從開始到結束的行
+		        	$('#data tr').slice(startItem,endItem).css('display','table-row');
+		        	nowPage -= 1;													//把當前頁碼-1
+		   		}
+		   	});
+		   	$('#next a').bind('click',function(){
+		   		if(nowPage == (numPages-1)){//nowpage取rel欄為，從0開始，而總頁面是從1開始，故-1。最後一頁時無法作用
+		   			return false;
+		   		}
+		   		else{
+		   			$('#now').removeAttr('id');
+		   			$('#now').removeClass('active'); 
+		   			$('#nav a:eq('+(nowPage+1)+')').attr('id','now'); 				//為當前頁面後一頁面增加id欄位值=now
+		   			$('#nav a:eq('+(nowPage+1)+')').addClass('active');				//為當前頁面後一頁面class增加屬性active
+		   			var currPage=$('#nav a:eq('+(nowPage+1)+')').attr('rel');     	//取出後一頁頁碼上的值
+		        	var startItem=currPage*rowsShown;    							//行數的開始=頁碼*每頁顯示的行
+		        	var endItem=startItem+rowsShown;     							//行數的結束=開始+每頁顯示的行
+		        	$('#data tr').hide();                 							//全部行都隱藏0         
+		        	//顯示從開始到結束的行
+		        	$('#data tr').slice(startItem,endItem).css('display','table-row');
+		        	nowPage += 1;													//把當前頁碼+1
+		   		}
+		   	});
+		   	
+		});
+	    </script>
+	    	<div class="col-md-10" id="tableinpage" align="center">
+	    		
+	    		
+	    		<% if(pub.length>0) {%>
+	    		<table class="table table-striped table-bordered" >
+	    			<thead>
+                        <tr>
+                            <td align='center' valign="middle" style="height:5vh;width:20vw;"><font face="微軟正黑體"><b>賣家</b></font></td>
+                            <td align='center' valign="middle" style="width:15vw;"><font face="微軟正黑體"><b>商品名稱</b></font></td>
+                            <td align='center' valign="middle"><font face="微軟正黑體"><b>商品狀況</b></font></td>
+                            <td align='center' valign="middle"><font face="微軟正黑體"><b>商品圖片</b></font></td>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+                    	<!-- 陣列從0開始，例如0.1.2 長度為3 故長度要-1否則出錯。 為日期排序-->
+                    	<% for(i=0; i<=(pub.length-1) ; i++) {%>
+                    	<tr>
+                            <td  bgcolor="white" width="300px" align='center' style="vertical-align: middle;height:5vh;">
+                            	<font face="微軟正黑體">帳號：<a href="/routes/user?acc=<%= pub[i].account %>" target="_blank"><%= pub[i].account %></a></font><br/>
+                            	<font face="微軟正黑體">姓名：<%= pub[i].name %></font><br/>
+                            	<font face="微軟正黑體">電話：0<%= pub[i].phone %></font>
+                            </td >
+                            <td bgcolor="white" align='center' width="450px" style="vertical-align: middle;width:10vw;">
+                            	<font face="微軟正黑體" size="4">
+                            	<a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"  target="_blank"><%= pub[i].product %></a><br/>
+                            	</font>
+                            </td>                         
+                            <td bgcolor="white" align='center' style="vertical-align: middle;">
+                            	<font face="微軟正黑體" size="2"><%= pub[i].Pstatus %></font>
+                            	<br/>
+                            	<font face="微軟正黑體" size="2">刊登日期：<%= pub[i].Date %></font>
+                            	<br/>
+                            	<font face="微軟正黑體" size="2">商品價錢：<%= pub[i].price %> $</font>
+                            </td>
+                            <td bgcolor="white" align="center" width="300px"  style="vertical-align: middle;height:18vh;">
+                            	<a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"  target="_blank">
+                            	<img src="uploadimg\<%= pub[i].Cover %>" style="max-height: 100%;max-width: 100%;">
+                            	</a>
+							</td><!-- <%= pub[i].Picture %> -->
+                        </tr>
+                        <% } %> 
+
+                    </tbody>
+	    		</table>
+	    		<nav aria-label="Page navigation example" style="position: fixed ;top:89.5vh;right:40vw;" > <!-- (100-16)/2 標籤列為16vw -->
+	    			<ul class="pagination">
+	    				<li class="page-item" id="Previous">
+      						<a class="page-link"  aria-label="Previous" style="cursor: pointer;"> <!--cursor: pointer;鼠標變為手指-->
+       						<span aria-hidden="true">&laquo;</span>
+        					<span class="sr-only">Previous</span>
+      						</a>
+    					</li>
+    					<li id="nav" class="page-item">
+    					</li>
+    					<li class="page-item" id="next">
+      						<a class="page-link"  aria-label="Next"  style="cursor: pointer;">  <!--cursor: pointer;鼠標變為手指-->
+        					<span aria-hidden="true">&raquo;</span>
+        					<span class="sr-only">Next</span>
+      						</a>
+    					</li>
+	    			</ul>
+	    		</nav>
+	    		<% } else{ %>	
+	    			<font face="微軟正黑體" size="6">找不到該項目之商品</font>
+	    		<% } %>	
+				<!--商品內容-->
+					
+			</div>
+	</div>		
+
+				    <% } else{ %>	
+							<!--註冊-->
+		<div> 	
+			<ul class="nav navbar-nav navbar-right">	
+				<li><a href="/routes/register"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span>註冊帳號</font></a></li>	
+							<!--登入-->			
+				<li><a href="/routes/login"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-log-in"></span>登入</font></a></li>
+			</ul>
+		</div>
+	</nav>
+		<br><br><br><br><br>
+		 <p align=center><img src="images\pcculogo.png"  width="800" height="400"></p>
+				   			 <% } %>			
+</body>
+<% include footer %>

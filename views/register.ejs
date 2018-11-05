@@ -1,0 +1,85 @@
+<% include register-javascript %>
+<body>
+<!-- <h1 align="center">
+	<a href="" class="btn btn-primary pull-right">
+註冊帳號
+	</a>
+	<a href="" class="btn btn-primary pull-right">
+登入
+	</a>
+</h1>    -->
+<br>
+<br>
+
+		<table border="0" align="center" cellpadding="pixels" valign="center">
+			<tr>
+				<td width="720px" rowspan="2" style=" border-bottom-left-radius: 10px;">					    
+					<img src="..\images\pcculogo.png"  width="720" height="360">						
+				</td>
+				<td style="font-size:18px;" width="530px" >	    	
+					<form role="form" name="register" id="register"  method="post" onsubmit="return Checkform();" autocomplete="off" >
+				<P><font face="微軟正黑體"><font size="6px"><b>註冊</b></font></font></P>	
+					<ul>				
+					<div class ="form-group" id="mail" style="margin-right: 35px;">
+					<label for="email">帳號（請使用學校信箱）：</label><label id="acc" for="email" class="control-label"></label>
+						<input id="email" class="form-control body" name="email" size="25" type="email" maxlength="40" placeholder="Example：A1234567@g.pccu.edu.tw or @ulive.pccu.edu.tw" onkeyup="isEmail(this.value)">
+					</div> <!-- [0]帳號 -->
+					<div class ="form-group" id="pwformat" style="margin-right: 35px;">
+					<label for="pwd" >密碼：</label><label for="pwd" id="pw" class="control-label"></label>
+						<input id="pwd" name="pwd" type="password" class="form-control body" maxlength="20" size="25" placeholder="至少一個大小寫英文和數字組成8~20的密碼" onkeyup="ispassword(this.value);pwdcheck(this.value);" >
+				    </div> <!-- [1]密 -->
+				    <div class ="form-group" id="pwok" style="margin-right: 35px;">
+					<label for="pwd1">確認密碼：</label><label for="pwd1"  class="control-label" id="pwc"></label>
+						<input id="pwd1" name="pwd1" type="password" class="form-control body" maxlength="20" size="25" placeholder="重新輸入密碼" onkeyup="ispwok(this.value)"  >
+				    </div> <!-- [2] 確密-->
+				    <div class ="form-group" id="Name1" style="margin-right: 35px;">
+					<label for="name1" >名稱：</label><label for="name1" class="control-label" id="name"></label>
+						<input id="name1" name="name1" class="form-control body" type="text" maxlength="10" onkeyup="isName(this.value)"  placeholder="請輸入名稱">
+					</div> <!-- [3] 姓名-->
+					<div class ="form-group" id="PhoneNumber" style="margin-right: 35px;">
+					<label for="Number">手機號碼：</label><label for="Number" class="control-label" id="tel"></label>
+						<input id="Number" name="Number" class="form-control body" type="tel" maxlength="10" placeholder="請輸入開頭為09的手機號碼" onkeyup="Checkphone(this.value)">
+					</div>  <!-- [4] 手機-->
+						<button type="submit" class="btn btn-primary body" name="submit" id="submit" value="reg">註冊帳號</button>	
+					</ul>				
+					</form>		
+				</td>
+			</tr>
+		</table>
+
+<style type="text/css">
+table{
+  margin: auto;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+tr{
+  border: 1px solid;
+}
+td{
+  border: 3px solid #8B4513;
+  padding: 5px 5px;
+  /*background-color: #E0607E;*/
+  /*color: #FFF;*/
+}
+
+/*第一欄第一列：左上*/
+tr:first-child td:first-child{
+  border-top-left-radius: 10px;
+}
+/*第一欄最後列：左下*/
+tr:last-child td:first-child{
+ 
+}
+/*最後欄第一列：右上*/
+tr:first-child td:last-child{
+  border-top-right-radius: 10px;
+}
+/*最後欄第一列：右下*/
+tr:last-child td:last-child{
+  border-bottom-right-radius: 10px;
+}
+</style>
+
+<% include footer %>

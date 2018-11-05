@@ -1,0 +1,85 @@
+<% include header %>
+<script>
+	function isName(Name){ //限制中文名字格式
+		if(Name.search(/^[\u4e00-\u9fa5]{2,}$/) !=-1 || Name.search(/^[A-Za-z]{2,}$/) !=-1 ){  // \u4e00-\u9fa5 中文正規
+			document.getElementById("newName1").className="form-group has-success";
+			document.getElementById("Nname").innerHTML="";
+		}
+		else if(Name==""){
+			document.getElementById("newName1").className="form-group";
+			document.getElementById("Nname").innerHTML="";
+		}
+		else{
+		document.getElementById("newName1").className="form-group has-error";	
+		document.getElementById("Nname").innerHTML="請確認名字是否大於2個字且不含數字特殊符號";
+		}
+	}
+	function ispassword(pw1){    //限制密碼8~20個第一個為任一英文字母 
+		if(pw1.search(/^(?=.*[A-Za-z])(?=.*\d).{8,20}$/) != -1){
+			document.getElementById("newPas1").className="form-group has-success";
+			document.getElementById("Npas").innerHTML="";
+		}
+		else if(pw1==""){
+			document.getElementById("newPas1").className="form-group";
+			document.getElementById("Npas").innerHTML="";
+		}
+		else{
+			document.getElementById("newPas1").className="form-group has-error"; 
+			document.getElementById("Npas").innerHTML="請輸入8~20含數字英文的密碼";
+		}
+	}
+		function pwdcheck(pw1){
+		if(pw1 != document.getElementById("chnewPas").value){
+			document.getElementById("chnewPasw").className="form-group has-error";
+			document.getElementById("NCpas").innerHTML="與密碼不相同";
+		}
+		else{
+			document.getElementById("chnewPasw").className="form-group has-success";
+			document.getElementById("NCpas").innerHTML="";
+		}
+	}
+	function ispwok(pw2){ //確認密碼與密碼相同
+		if(pw2==document.getElementById("newPas").value){
+			document.getElementById("chnewPasw").className="form-group has-success";
+			document.getElementById("NCpas").innerHTML="";
+		}
+		else{
+			document.getElementById("chnewPasw").className="form-group has-error";
+			document.getElementById("NCpas").innerHTML="與密碼輸入不同";
+		}
+	}
+	function Checkphone(PNumber){ //限制電話號碼格式
+		if(PNumber.search(/^[0][9][0-9]{8}$/) !=-1){
+			document.getElementById("newPhone1").className="form-group has-success";
+			document.getElementById("Nphone").innerHTML="";
+		}
+		else if(PNumber==""){
+			document.getElementById("newPhone1").className="form-group";
+			document.getElementById("Nphone").innerHTML="";
+		}
+		else{
+			document.getElementById("newPhone1").className="form-group has-error";
+			document.getElementById("Nphone").innerHTML="輸入電話號碼為09開頭10碼";
+		}
+	}
+	function Checkform(){ //核對所有欄位都為success的狀態
+		var chpw = document.getElementById("newPas1").className;
+		var chpw1 = document.getElementById("chnewPasw").className;
+		var chname = document.getElementById("newName1").className;
+		var chpnb = document.getElementById("newPhone1").className;
+		var pw = document.getElementById("newPas").value;
+		var pw1 = document.getElementById("chnewPas").value;
+		var name = document.getElementById("newName").value;
+		var pnb = document.getElementById("newPhone").value;
+		if((chpw == "form-group has-success"|| pw=="" ) && (chpw1 == "form-group has-success" || pw1 =="")){
+			return true;
+		}
+		else {
+			event.preventDefault();
+		}
+
+	}
+
+
+
+</script>

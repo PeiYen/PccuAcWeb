@@ -1,0 +1,84 @@
+<% include login-javascript %>
+<body>
+	
+
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<table border="0" align="center" cellpadding="pixels" valign="center">
+			<tr>
+				<td width="720px">					    
+					<img src="..\images\pcculogo.png"  width="720" height="360">						
+				</td>
+				<td style="font-size:18px;" width="530px" >	    	
+					<form  role="form" name="login" id="login"  method="post" autocomplete="off" >
+						<fieldset>
+							<P><font face="微軟正黑體"><font size="6px"><b>登入</b></font></font></P>
+							<ul>
+								<div class ="form-group" id="mail">
+									<label for="email">學校信箱：</label><label id="acc" for="email" class="control-label"></label>
+									<input id="email" class="form-control" name="email" size="25" type="email" maxlength="40" placeholder="Example：A1234567@g.pccu.edu.tw or @ulive.pccu.edu.tw" onkeyup="isEmail(this.value)">
+								</div>
+								<div class ="form-group" id="pwformat">
+									<label for="pwd">密碼：</label><label for="pwd" id="pw" class="control-label"></label>
+									<input id="pwd" name="pwd" type="password" class="form-control" maxlength="20" size="25" placeholder="請輸入8~20的密碼" onkeyup="ispassword(this.value)">
+								</div>
+								<script>	
+			                            for(var i=0;i<6;i++){                         //取六位
+			                                var which = Math.floor(Math.random()*10); //驗證碼 亂數
+			                                a+=which*chk;
+			                                chk/=10;
+			                                document.write("<img src ="+picname[which]+" width="+50+ "height="+50+">");
+			                            }                    
+			                    </script>
+			                    <br>			                                          
+			                        <div class="form-group" id="ChkNumber">    
+			                            <label for="ChkNum">請輸入驗證碼：</label><label for="ChkNum" class="control-label" id="chkl" ></label>
+			                                <input type=text class="form-control" name="ChkNum" id="ChkNum" maxlength="6" onkeyup="check()">                         
+			                        </div>			                    
+								<button type="submit" class="btn btn-primary" id="Sublog" onclick="Checkform()" disabled=true>登入</button>
+							</ul>
+						</fieldset>
+					</form>		
+				</td>
+			</tr>
+		</table>
+
+<style type="text/css">
+table{
+  margin: auto;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+tr{
+  border: 1px solid;
+}
+td{
+  border: 3px solid #8B4513;
+  padding: 5px 5px;
+  /*background-color: #E0607E;*/
+  /*color: #FFF;*/
+}
+
+/*第一欄第一列：左上*/
+tr:first-child td:first-child{
+  border-top-left-radius: 10px;
+}
+/*第一欄最後列：左下*/
+tr:last-child td:first-child{
+  border-bottom-left-radius: 10px;
+}
+/*最後欄第一列：右上*/
+tr:first-child td:last-child{
+  border-top-right-radius: 10px;
+}
+/*最後欄第一列：右下*/
+tr:last-child td:last-child{
+  border-bottom-right-radius: 10px;
+}
+</style>
+</body>
+<% include footer %>
