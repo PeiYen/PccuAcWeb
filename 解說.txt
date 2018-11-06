@@ -1,0 +1,4 @@
+routes 為後端檔案
+views  存放前端ejs檔案
+app.js 為node啟動檔案
+packahe.json 為npm過那些套件
