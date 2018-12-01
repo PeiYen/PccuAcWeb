@@ -33,8 +33,6 @@ var buy = require('./buy')
 var MyPub = require('./MyPub');
 var user = require('./user');
 var mydata = require('./mydata');
-var chname = require('./chname');
-var chPhone = require('./chPhone');
 var confirm = require('./confirm');
 var order = require('./order');
 var ordersession = require('./ordersession');
@@ -42,6 +40,8 @@ var changequantity = require('./changequantity');
 var Evaluation = require('./Evaluation');
 var checkCode = require('./checkCode');
 var reset = require('./reset');
+var chIntrod = require('./chIntrod');
+var forget = require('./forget');
 //訂單
 global.buy = mongoose.model('buy',{
   Ordernum:String,                //訂單編號
@@ -84,12 +84,16 @@ global.userdata = mongoose.model('userdata', { //儲放使用者資料的集合
   name:String,      //姓名
   phone:Number,     //電話號碼
   code:String,      //驗證信箱瑪
+  Line:String,      //Line Id
+  Introd:String,    //自我介紹
   islive:Boolean,   //是否驗證帳戶
   SucDate:Number,   //驗證時間
   Date:String,      //日期
   Time:String       //時間
 });
-// userdata.updateOne({account:"A4230721@g.pccu.edu.tw"},{islive:false},function(err,doc){})
+userdata.updateMany({},{islive:true},function(err,doc){})
+userdata.updateOne({account:"A4230763@g.pccu.edu.tw"},{islive:true},function(err,doc){})
+// userdata.updateMany({},{islive:false},function(err,doc){})
 //刊登商品
 global.Publish = mongoose.model('Publish',  { //刊登商品集合
   account:{type:String,ref:'userdata'},       //account與登入之帳戶關聯
@@ -143,6 +147,9 @@ global.Evaluation = mongoose.model('Evaluation',{
   Date:String,        //日期
   Time:String         //時間
 });
+
+// userdata.update({account:"A4230763@g.pccu.edu.tw"},{islive:false},function(err,doc){});
+
 var ImgUpload = upload.fields([{name:'Img1',maxCount:1},{name:'Img',maxCount:9}]);//name為欄位名稱 maxCount為最大上傳數限制 ([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 //根目錄路由
 router.route('/')
@@ -186,15 +193,12 @@ router.route('/user')
   .get(user.get_user);
   //帳戶頁面
 router.route('/mydata')
-  .get(mydata.get_mydata);
-  //更改姓名
-router.route('/chname')
-  .get(chname.get_chname)
-  .post(chname.post_chname);
-  //更改電話
-router.route('/chPhone')
-  .get(chPhone.get_chPhone)
-  .post(chPhone.post_chPhone);
+  .get(mydata.get_mydata)
+  .post(mydata.post_mydata);
+  //更改自介
+router.route('/chIntrod')
+  .get(chIntrod.get_chIntrod)
+  .post(chIntrod.post_chIntrod);
   //購買商品查詢
 router.route('/confirm')
   .get(confirm.get_confirm);
@@ -220,6 +224,10 @@ router.route('/checkCode')
 router.route('/reset')
   .get(reset.get_reset)
   .post(reset.post_reset);
+  //忘記密碼
+router.route('/forget')
+  .get(forget.get_forget)
+  .post(forget.post_forget);
   //拍賣商品路由
 router.route('/sell')
   .get(sell.get_sell)

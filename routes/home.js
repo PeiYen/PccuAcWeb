@@ -14,7 +14,7 @@ exports.ghome = function(req, res) {
 	else{
 		req.session.min = params.minprice;//儲存最小值Cookie
 	}
-
+   
 
 	if(!params.minprice){
 		req.session.max = 0;
@@ -22,6 +22,17 @@ exports.ghome = function(req, res) {
 	else{
 		req.session.max = params.maxprice;//儲存最大值Cookie
 	}
+
+     if(!params.style){  //商品呈現方式
+          req.session.style = "list";//並列
+     }
+     else if(params.style != "large"){  
+          req.session.style = "list";
+     }
+     else if(params.style == "large"){
+          req.session.style = "large;"
+     }
+
 
 if(params.sort == "priceBIG"){
 	buy.find({Seller:req.session.acc,Orderstatus: { $ne : "交易完成" }},function(err,order){
@@ -35,6 +46,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -48,6 +60,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -61,6 +74,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -74,6 +88,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -87,6 +102,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -100,6 +116,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -113,6 +130,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -126,6 +144,7 @@ if(params.sort == "priceBIG"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});
@@ -141,6 +160,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -154,6 +174,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -167,6 +188,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -180,6 +202,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -193,6 +216,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -206,6 +230,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -219,6 +244,7 @@ if(params.sort == "priceBIG"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -232,6 +258,7 @@ if(params.sort == "priceBIG"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});
@@ -253,6 +280,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -266,6 +294,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -279,6 +308,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -292,6 +322,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -305,6 +336,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -318,6 +350,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -331,6 +364,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -344,6 +378,7 @@ else if(params.sort == "priceSMALL"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});
@@ -359,6 +394,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -372,6 +408,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -385,6 +422,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -398,6 +436,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -411,6 +450,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -424,6 +464,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -437,6 +478,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -450,6 +492,7 @@ else if(params.sort == "priceSMALL"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});
@@ -471,6 +514,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -484,6 +528,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -497,6 +542,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -510,6 +556,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -523,6 +570,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -536,6 +584,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -549,6 +598,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -562,6 +612,7 @@ else if(params.sort == "priceSMALL"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});
@@ -577,6 +628,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -590,6 +642,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -603,6 +656,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -616,6 +670,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -629,6 +684,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -642,6 +698,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -655,6 +712,7 @@ else if(params.sort == "priceSMALL"){
      		min:req.session.min,
      		max:req.session.max,
      		name:req.session.user,
+               style:req.session.style,
      		order:order
      		});
 		});
@@ -668,6 +726,7 @@ else if(params.sort == "priceSMALL"){
      	min:req.session.min,
      	max:req.session.max,
      	name:req.session.user,
+          style:req.session.style,
      	order:order
      	});
 	});

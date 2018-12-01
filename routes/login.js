@@ -6,7 +6,13 @@ const cookieParser = require('cookie-parser');
 
 // 登入
 exports.get_log = function(req, res) {
+  if(req.session.isLogin == true){
+    res.render('LoginNo');
+  }
+  else{
     res.render("login");
+  }
+  
 };
 //把註冊資料跟登入欄輸入的資料作比對
 exports.post_log = function(req,res){

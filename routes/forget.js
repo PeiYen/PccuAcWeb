@@ -6,35 +6,25 @@ const cookieParser = require('cookie-parser');
 var nodemailer = require('nodemailer');  //郵件信箱驗證
 
 
-exports.get_reset =  function(req, res) {
-  if(req.session.isLogin == true){
+exports.get_forget =  function(req, res) {
+     if(req.session.isLogin == true){
     res.render('PleaseLogout');
   }
   else{
-    res.render("reset");
+    res.render("forget");
   }
 };
 
-exports.post_reset =  function(req, res) {
-  var code =  Math.random().toString(36).substring(2); 
-  var today = new Date();
-  var SucDate = today.getTime();
-     console.log("這是重發驗證信");
-    userdata.findOne({account:req.body.retemail},function(err,doc){ //搜尋userdata集合的文大帳戶欄位
+exports.post_forget =  function(req, res) {
+    userdata.findOne({account:req.body.retemail,phone:req.body.Number},function(err,doc){ //搜尋userdata集合的文大帳戶欄位
       if(err){
         throw err;
         console.log(err);
       }
-      else if(!doc){                                            //如果並未找到該帳號資訊
+      else if(!doc){                                      //如果並未找到該帳號資訊
         res.render("nofinduser");
       }
-      else if(doc.islive == true){                        //如果帳號已經開通
-        res.render("checkcodetoed");
-      }
       else{
-        userdata.updateOne({account:req.body.retemail},{code:code,SucDate:SucDate},function(err,doc){//更新驗證碼與時間
-          if(err) throw err;
-        })
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -46,10 +36,10 @@ exports.post_reset =  function(req, res) {
           var mailOptions = {
             from: 'PccuAuctionWebsite07@gmail.com',
             to: req.body.retemail,
-            subject: '文大拍賣網驗證信', //標題
+            subject: '文大拍賣網用戶資訊', //標題
             // text:'點擊驗證："http://localhost:3000/routes/checkCode?account='+ req.body.email +'&code='+ code + '"',     //內容
             // 
-            html:'<h2>歡迎註冊文大拍賣網 快來驗證帳號吧!</h2><br/><a href="http://pccuac.hopto.org:3000/routes/checkCode?account='+ req.body.retemail +'&code='+ code + '"><h2>點我驗證帳號!!</h2></a></br><img src="https://i.imgur.com/DwH6uA0.png" width="500" height="350"> '
+            html:'<h2><font style="color:#33CCFF"><u>'+ doc.name + '</u></font>&nbsp;&nbsp;&nbsp;&nbsp;,您好</h2><br/><h2>您的密碼為："<font color="red">'+ doc.password +'</font>"</h2></br><img src="https://i.imgur.com/DwH6uA0.png" width="500" height="350"> '
           };
 
           transporter.sendMail(mailOptions, function(error, info) {
@@ -59,7 +49,7 @@ exports.post_reset =  function(req, res) {
               console.log('Email sent: ' + info.response);
             }
         });
-        res.render("resetcode");
+        res.render("forgetSuc");
       }
     })
 };

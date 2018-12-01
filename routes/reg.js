@@ -7,11 +7,17 @@ var nodemailer = require('nodemailer');  //郵件信箱驗證
 
 // 切換註冊帳號介面
 exports.get_reg =  function(req, res) {
-   res.render("register");
+  if(req.session.isLogin == true){
+    res.render('RegNo');
+  }
+  else{
+    res.render("register");
+  }
+  
 };
 
 exports.post_reg = function(req, res) {
-  var code =  Math.random().toString(36).substring(2); 
+  var code =  Math.random().toString(36).substring(2); //驗證碼規格 10為含隨機數字與英文
   var today = new Date();
   var SucDate = today.getTime();
 
@@ -54,7 +60,7 @@ exports.post_reg = function(req, res) {
             to: req.body.email,
             subject: '文大拍賣網驗證信', //標題
             // text:'點擊驗證："http://localhost:3000/routes/checkCode?account='+ req.body.email +'&code='+ code + '"',     //內容
-             html:'<h2>歡迎註冊文大拍賣網，感謝您的支持，快來驗證帳號吧!</h2><br/><a href="http://pccuac.hopto.org:3000/routes/checkCode?account='+ req.body.email +'&code='+ code + '"><h2>點我驗證帳號!!</h2></a></br><img src="https://i.imgur.com/G4pIpwP.png" width="800" height="400"> '
+              html:'<h2>歡迎註冊文大拍賣網 快來驗證帳號吧!</h2><br/><a href="http://pccuac.hopto.org:3000/routes/checkCode?account='+ req.body.retemail +'&code='+ code + '"><h2>點我驗證帳號!!</h2></a></br><img src="https://i.imgur.com/DwH6uA0.png" width="500" height="350"> '
           };
 
           transporter.sendMail(mailOptions, function(error, info) {
