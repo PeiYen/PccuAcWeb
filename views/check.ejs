@@ -1,19 +1,18 @@
 <% include check-javascript %>
-<body>
+<body style="background-image: url(../images/blue.jpg);background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;">
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-4 col-md-offset-4" style="margin-top: 30vh;">
 			<form role="form" name="register" id="register"  method="post" autocomplete="off">
 				<ul>
 					<div class ="form-group" id="pwformat">
-					<li><label for="pwd" >密碼：</label><label for="pwd" id="pw" class="control-label"></label>
-						<input id="pwd" name="pwd" type="password" class="form-control body" maxlength="20" size="25" placeholder="至少一個大小寫英文和數字組成8~20的密碼" onkeyup="ispassword(this.value);pwdcheck(this.value);" >
-					</li>
+						<label for="pwd" >密碼：</label><label for="pwd" id="pw" class="control-label"></label>
+						<input id="pwd" name="pwd" type="password" class="form-control body" maxlength="20" size="25" placeholder="至少一個大小寫英文和數字組成8~20的密碼" onkeyup="ispassword(this.value);pwdcheck(this.value);" >			
 				    </div> <!-- [1]密 -->
 				    <div class ="form-group" id="pwok">
-					<li><label for="pwd1">確認密碼：</label><label for="pwd1"  class="control-label" id="pwc"></label>
-						<input id="pwd1" name="pwd1" type="password" class="form-control body" maxlength="20" size="25" placeholder="重新輸入密碼" onkeyup="ispwok(this.value)"  ></li>
+					<label for="pwd1">確認密碼：</label><label for="pwd1"  class="control-label" id="pwc"></label>
+						<input id="pwd1" name="pwd1" type="password" class="form-control body" maxlength="20" size="25" placeholder="重新輸入密碼" onkeyup="ispwok(this.value)"  >
 				    </div> <!-- [2] 確密-->			
-					<li><button type="submit" class="btn btn-primary body" onclick="Checkform()">確認</button></li>
+					<button type="submit" class="btn btn-primary body" onclick="Checkform()">確認</button>
 				</ul>
 			</form>
 		</div>

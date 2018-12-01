@@ -1,5 +1,5 @@
 <% include header %>
-<nav class="navbar navbar-inverse bg-primary" style="height:9vh;line-height:9vh;">	
+<nav class="navbar navbar-inverse bg-primary" style="height:6vh;line-height:6vh;border-radius:0px;"">	
 		<div class="container-fluid">
 			<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -12,9 +12,9 @@
 	 			<div class="collapse navbar-collapse" id="myNavbar">	
 
 	  			<ul class="nav navbar-nav navbar-left" >
-	  				<li style="right:1.5vw;"><a href="/"><img src="..\images\logo.png"  width="140" height="33" style="height:5vh;"></a></li> 
+	  				<li style="right:1.5vw;"><a href="/"><img src="..\images\logo.png"  style="max-height:33px;"></a></li> 
 	    			<li class="dropdown dropdown-submenu" style="right:1vw;"><a href="#" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" id="dropdownMenuLink">
-	    				<font size="5" face="微軟正黑體">我的拍賣<span class="glyphicon glyphicon-triangle-bottom "></span></font></a> <!-- <span class="badge badge-secondary">New</span> badge語法 -->
+	    				<font size="4" face="微軟正黑體">我的拍賣<span class="glyphicon glyphicon-triangle-bottom "></span></font></a> <!-- <span class="badge badge-secondary">New</span> badge語法 -->
 	    				<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
 	    					<li class="dropdown-header"><font size="5" face="微軟正黑體"><b>擔任賣家</b></font></li>
 	    					<li><a href="/routes/MyPub" ><font size="5" face="微軟正黑體"><b>我的拍賣商品</b></font></a></li>
@@ -36,10 +36,11 @@
 
 
 				<ul class="nav navbar-nav navbar-right">	
-
-					<li><a href="/routes/mydata"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font></a></li>
+					<li><a href="mailto:pccuauctionwebsite07@gmail.com"><font size="4" face="微軟正黑體"><span class="
+					glyphicon glyphicon-envelope"></span>聯絡我們</font></a></li>
+					<li><a href="/routes/mydata"><font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font></a></li>
 							<!--登出-->		
-				    <li><a href="/routes/logout"><font size="5" face="微軟正黑體"><span class="glyphicon glyphicon-log-out"></span>登出</font></a></li>
+				    <li><a href="/routes/logout"><font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-log-out"></span>登出</font></a></li>
 				</ul>
 			</div>	
 		</div>

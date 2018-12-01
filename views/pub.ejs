@@ -1,5 +1,5 @@
 <% include nav %>
-<body>
+<body background="../images/background.png">
 
 	<h1 style="margin-left: 5vw;" ><font face="微軟正黑體"><b><%= pub.product %></b></font></h1> <br/><!--商品名稱-->
 	<div class="cover"></div>
@@ -7,7 +7,7 @@
 <div style="position:absolute; display:block;"> <!-- 並排用 -->
     	<div class="showbox " style="vertical-align: middle;margin-left: 5vw;background-color:#F5F5F5;border: 1px solid #DDDDDD;border-radius:10px;" >
     			<img id="show-image" class="a b bigimg upimg" src="../uploadimg/<%= pub.Picture[0] %>"  style="display:block;
-    			 margin-left:auto;margin-right:auto;margin-top:120px;" />
+    			 margin-left:auto;margin-right:auto;margin-top:130px;" />
     	</div><!--  放大圖 -->
  		
 		<div class="pub " style="margin-left: 5vw; background-color:#F5F5F5;border: 1px solid #DDDDDD;border-radius:10px;">	
@@ -28,7 +28,7 @@
 		        <li><a href="#tab02">留言板</a></li>
 		        <li><a href="#tab03">商品評價</a></li>
 		    </ul>
-		        <div id="tab01" class="tab-inner" style="border-radius:10px;">
+		        <div id="tab01" class="tab-inner" style="border-radius:10px;word-wrap: break-word;word-break: normal;">
 		        	<p><font size="5" face="微軟正黑體" style="line-height:10px;"><%= pub.product %></font></p>
 		    	</div>
 		    	<div id="tab02" class="tab-inner" style="border-radius:10px;">
@@ -334,7 +334,7 @@
 		</div>
 		<script >
 		$(document).ready(function() {
-	      	var rowsShown=5;                             //每頁顯示的行
+	      	var rowsShown=7;                             //每頁顯示的行
 	      	var rowsTotal=$('#data2 tr').length;          //獲取總共的行
 	      	var numPages=Math.ceil(rowsTotal/rowsShown); //計算出有多少頁
 	      	var nowPage = 0;							 //當前頁碼		
@@ -413,7 +413,7 @@
 
 		<script >
 		$(document).ready(function() {
-	      	var rowsShown=5;                             //每頁顯示的行
+	      	var rowsShown=7;                             //每頁顯示的行
 	      	var rowsTotal=$('#data tr').length;          //獲取總共的行
 	      	var numPages=Math.ceil(rowsTotal/rowsShown); //計算出有多少頁
 	      	var nowPage = 0;							 //當前頁碼		
@@ -601,23 +601,26 @@
 		<% } %>
 			<b>
 			<br/>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;">商品狀況：<%= pub.Pstatus %></font>
-			<br/>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;">賣家：<a href="/routes/user?acc=<%= pub.account %>"><%= pub.account %></a></font>
-			<br/>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;">上傳日期：<%= pub.Date %></font>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;">商品狀況：<%= pub.Pstatus %></font>
+			<br/><br/>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;">賣家：<a href="/routes/user?acc=<%= pub.account %>"><%= pub.account %></a></font>
+			<br/><br/>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;">上傳日期：<%= pub.Date %></font>
 			<br/>
 			<% if(Eva.length!=0) { %>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;margin-right:1vw;color:#EE7700;">(<u><%= Avg %></u>)</font>	
-			<font size="4" face="微軟正黑體" >|</font>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;color:#EE7700;"><u><%= Eva.length %></u></font>
-			<font size="4" face="微軟正黑體" >評價</font>
+			<br/>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;margin-right:1vw;color:#EE7700;">(<u><%= Avg %></u>)分</font>	
+			<font size="5" face="微軟正黑體" >|</font>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;color:#EE7700;"><u><%= Eva.length %></u></font>
+			<font size="5" face="微軟正黑體" >評價</font>
 			</b>
+			<br/><br/>
 			<div id="bg" style="margin-left:1vw;background-color:#EE7700;border-radius:5px;" >
 				<div id="over" style="width:<%= Avg*20 %>px"></div> <!--1顆星寬20px 5顆100px 分數最多5分，所以*20-->
+
 			</div>
 			<% } else { %>
-			<font size="4" face="微軟正黑體" style="margin-left:1vw;color:#EE7700;">目前尚未有任何評價!</font>
+			<font size="5" face="微軟正黑體" style="margin-left:1vw;color:#EE7700;">目前尚未有任何評價!</font>
 			<% } %>
 	</div>
 

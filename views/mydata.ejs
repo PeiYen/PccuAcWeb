@@ -1,12 +1,160 @@
 <% include nav %>
-	<div style="margin-left: 5vw;padding-left:2vw;padding-top:1vh;width: 90vw;height:85vh;border-radius: 25px;border:1px solid blue;display:block;position:absolute;">
-        <div style="line-height:100px;height:100px;">
-		<font face="微軟正黑體" size="6">學校信箱：<%= user.account %></font><br/>
-		<font face="微軟正黑體" size="6">帳戶姓名：<%= user.name %></font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/routes/chname"><button class="btn btn-info btn-lg">更改姓名</button></a>
+<body style="background-image: url(../images/blue.jpg);background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;">
+	<div style="margin-left: 5vw;padding-left:2vw;padding-top:1vh;width: 90vw;height:85vh;border-radius: 25px;border:0px solid blue;display:block;position:absolute;background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);">
+        <div style="line-height:80px;height:500px;">
+		<font face="微軟正黑體" size="5"><B>學校信箱：<%= user.account %></B></font><br/>
+                <div id="dname">
+        		<font face="微軟正黑體" size="5"><B>帳戶姓名：<%= user.name %>
+                        </B></font>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-info btn-md" id="chname" name="chname" onclick="chname();">
+                                <font face="微軟正黑體" size="4"><b>更改姓名</b></font>
+                        </button>
+                        <br/>
+                </div>
+        <script>
+                function chname(){
+                        document.getElementById("fname").style.display = "";
+                        document.getElementById("dname").style.display = "none";
+                }
+        </script>
+        <form method="post" style="display: none;" id="fname" onsubmit="return nameform();">
+                <font face="微軟正黑體" size="5">
+                <B>帳戶姓名：
+                <input type="text" required="required" id="name" name="name" onkeyup="isName(this.value);" style="width:200px;height:35px;"></B>
+                </font>
+                <button type="submit" id="submit" name="submit" value="name" class="btn btn-info btn-md"
+                ><font face="微軟正黑體" size="4" ><b>更改姓名</b></font></button>
+                <label for="name" class="control-label" id="Npas" style="color:#ff0000"></label>
+        </form> 
+<script>
+        function isName(Name){ //限制中文名字格式
+                if(Name.search(/^[\u4e00-\u9fa5]{2,}$/) !=-1 || Name.search(/^[A-Za-z]{2,}$/) !=-1 ){  // \u4e00-\u9fa5 中文正規
+                        document.getElementById("name").style.border="#66FF66 1px solid";
+                        document.getElementById("Npas").innerHTML="";
+                }
+                else if(Name==""){
+                        document.getElementById("name").style.border="#ff0000 1px solid";
+                        document.getElementById("Npas").innerHTML="請輸入文字";
+                }
+                else{
+                document.getElementById("name").style.border="#ff0000 1px solid";    
+                document.getElementById("Npas").innerHTML="請確認名字是否大於2個字且不含數字特殊符號";
+                }
+        }
+        function nameform(){ //核對所有欄位都為success的狀態
+                if(document.getElementById("Npas").innerHTML==""){
+                        return true;
+                }
+                else {
+                        event.preventDefault();
+                }
+        }
+</script>
+<div id="dphone">
+        <font face="微軟正黑體" size="5"><B>聯絡方式：0<%= user.phone %></B></font>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-info btn-md" onclick="chphone();"><font face="微軟正黑體" size="4"><b>更改電話</b></font></button>
         <br/>
-        <font face="微軟正黑體" size="6">聯絡方式：0<%= user.phone %></font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/routes/chPhone"><button class="btn btn-info btn-lg">更改電話</button></a>
-        <br/>
-        <font face="微軟正黑體" size="5">如需更改密碼請點擊：<a href="/routes/check">更改密碼</a></font>
+</div>
+<script>
+        function chphone(){
+                document.getElementById("fphone").style.display = "";
+                document.getElementById("dphone").style.display = "none";
+        }
+</script>
+        <form method="post" style="display: none;" id="fphone">
+                <font face="微軟正黑體" size="5">
+                <B>聯絡方式：
+                <input type="text" required="required" id="phone" name="phone" onkeyup="Checkphone(this.value);" style="width:200px;height:35px;" maxlength="10"></B>
+                </font>
+                <button type="submit" id="submit" name="submit" value="phone" class="btn btn-info btn-md" onclick="Checkform();"><font face="微軟正黑體" size="4" ><b>更改電話</b></font></button>
+                <label for="phone" class="control-label" id="Nphone" style="color:#ff0000"></label>
+        </form> 
+<script>
+        function Checkphone(PNumber){ //限制電話號碼格式
+                if(PNumber.search(/^[0][9][0-9]{8}$/) !=-1){
+                        document.getElementById("phone").style.border="#66FF66 1px solid";
+                        document.getElementById("Nphone").innerHTML="";
+                }
+                else if(PNumber==""){
+                        document.getElementById("phone").style.border="#ff0000 1px solid";
+                        document.getElementById("Nphone").innerHTML="請輸入電話號碼";
+                }
+                else{
+                        document.getElementById("phone").style.border="#ff0000 1px solid";
+                        document.getElementById("Nphone").innerHTML="輸入電話號碼為09開頭10碼";
+                }
+        }
+        function Checkform(){ //核對所有欄位都為success的狀態
+                if(document.getElementById("Nphone").innerHTML==""){
+                        return true;
+                }
+                else {
+                        event.preventDefault();
+                }
+        }
+</script>
+        <% if(!user.Line) { %>
+        <form method="post" onsubmit="return true;">
+                <font face="微軟正黑體" size="5"><B>新增Line ID：</B></font>
+                <input id="Line" name="Line" required="required" style="width:200px;height:35px;">&nbsp;&nbsp;&nbsp;
+                <button type="submit" id="submit" name="submit" value="Line" class="btn btn-info btn-md"><font face="微軟正黑體" size="4"><b>新增Line</b></font></button>
+        </form>
+        <% } else {%>
+        <div id="dLine">
+                <font face="微軟正黑體" size="5"><B>LineID：<%= user.Line %></B></font>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info btn-md" onclick="chLine();">
+                        <font face="微軟正黑體" size="4"><b>更改Line</b></font>
+                </button>
+                <br/>
+        </div>
+        <script>
+                function chLine(){
+                        document.getElementById("fLine").style.display = "";
+                        document.getElementById("dLine").style.display = "none";
+                }   
+        </script>
+        <form method="post" style="display: none;" id="fLine">
+                <font face="微軟正黑體" size="5">
+                <B>LineID：
+                <input type="text" required="required" id="Line" name="Line"  style="width:200px;height:35px;" onkeyup="CLine(this.value);"></B>
+                </font>
+                <button type="submit" id="submit" name="submit" value="Line" class="btn btn-info btn-md"><font face="微軟正黑體" size="4" onclick="Lineform();"><b>更改Line</b></font></button>
+                <label for="Line" class="control-label" id="NLine" style="color:#ff0000"></label>
+        </form> 
+        <script>
+                function CLine(LineID){ //限制電話號碼格式
+                        if(LineID!=""){
+                                document.getElementById("Line").style.border="#66FF66 1px solid";
+                                document.getElementById("NLine").innerHTML="";
+                        }
+                        else{
+                                document.getElementById("Line").style.border="#ff0000 1px solid";
+                                document.getElementById("NLine").innerHTML="請輸入LineID";
+                        }
+                }
+                function Lineform(){ //核對所有欄位都為success的狀態
+                        if(document.getElementById("NLine").innerHTML==""){
+                                return true;
+                        }
+                        else {
+                                event.preventDefault();
+                        }
+                }
+        </script>
+        <% } %>
+        <% if(!user.Introd) { %>
+        <form method="post" onsubmit="return true;">
+                <font face="微軟正黑體" size="5"><B>新增自介：</B></font>
+                <input id="Introd" name="Introd" required="required" style="width:600px;height:35px;">
+                <button type="submit" id="submit" name="submit" value="Introd" class="btn btn-info btn-md" ><font face="微軟正黑體" size="4"><b>新增自介</b></font></button>
+        </form>
+        <% } else {%>
+        <font face="微軟正黑體" size="5"><B>介紹：</B></font>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="/routes/chIntrod"><button class="btn btn-info btn-md"><font face="微軟正黑體" size="4"><b>更改自介</b></font></button></a><br/>
+        <% } %>
+        <font face="微軟正黑體" size="5"><B>如需更改密碼請點擊：</B></font><a href="/routes/check"><button class="btn btn-info btn-md"><font face="微軟正黑體" size="4"><B>更改密碼</B></font></button></a><br/>
         </div>
 	</div>
+</body>
 <% include footer %>

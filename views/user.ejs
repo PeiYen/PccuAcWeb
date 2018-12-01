@@ -1,11 +1,23 @@
 <% include nav %>
 <% if(user) {%>
-	<div style="margin-left: 5vw;padding-left:2vw;padding-top:1vh;width: 40vw;height:10vh;border-radius: 25px;border:1px solid blue;display:block;position:absolute;">
-		<font face="微軟正黑體"><%= user.account %></font><br/>
-		<font face="微軟正黑體"><%= user.name %></font>
+<body background="../images/blue.jpg">
+	<div style="margin-left: 5vw;padding-left:2vw;padding-top:1vh;width: 40vw;height:19vh;border-radius: 25px;border:0px solid blue;display:block;position:absolute;line-height:35px;background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);">
+		<font face="微軟正黑體" size="4"><B>帳戶：<%= user.account %></B></font><br/>
+		<font face="微軟正黑體" size="4"><B>名稱：<%= user.name %></B></font><br/>
+        <font face="微軟正黑體" size="4"><B>聯絡方式：0<%= user.phone %></B></font>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% if(!user.Line) { %>
+            <font face="微軟正黑體" size="4"><B>Line ID：尚未有Line ID資訊</B></font>
+        <% } else {%>
+            <font face="微軟正黑體" size="4"><B>Line ID：<%= user.Line %></B></font>
+        <% } %>
 	</div>
-	<div style="border:1px solid blue;display:block;width: 45vw;height:10vh;margin-left: 50vw;padding-left:2vw;padding-top:1vh;">  <!--5+40+5=50-->
-		<font face="微軟正黑體">聯絡方式：0<%= user.phone %></font><br/>
+	<div style="word-wrap: break-word;word-break: normal;border-radius: 25px;border:0px solid blue;display:block;width: 45vw;height:19vh;margin-left: 50vw;padding-left:2vw;padding-top:1vh;background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);">  <!--5+40+5=50-->
+        <% if(!user.Introd) { %>
+            <font face="微軟正黑體" size="4"><B>介紹：尚未有介紹資訊</B></font>
+        <% } else {%>
+            <font face="微軟正黑體" size="4"><B>介紹：<%= user.Introd %></B></font>
+        <% } %>
 	</div>
 	<br/>
 	<div align='center'><font face="微軟正黑體" size="6"><b>所有商品</b></font></div>
@@ -13,21 +25,21 @@
 	<div style="margin-left: 5vw;width: 90vw;">
 		<table class="table table-striped table-bordered"  style="line-height:40px">
 	    			<thead>
-                        <tr>
-                        	<td align='center' valign="middle"><font face="微軟正黑體">商品狀況</font></td>
-                            <td align='center' valign="middle"><font face="微軟正黑體">商品名稱</font></td>            
-                            <td align='center' valign="middle"><font face="微軟正黑體">商品圖片</font></td>
+                        <tr background="../images/up.jpg">
+                        	<td align='center' valign="middle"><font face="微軟正黑體" size="4"><B>商品狀況</B></td>
+                            <td align='center' valign="middle"><font face="微軟正黑體" size="4"><B>商品名稱</B></font></td>            
+                            <td align='center' valign="middle"><font face="微軟正黑體" size="4"><B>商品圖片</B></font></td>
                         </tr>
                     </thead>
                     <% for(i=(pub.length-1); i>=0 ; i-=1) {%>
                     <tbody id="data">                   
                         <td bgcolor="white" align='center' style="vertical-align: middle;width:20vw">
-                        	<font face="微軟正黑體"><%= pub[i].Pstatus %><br/>刊登日期：<%= pub[i].Date %></font>
+                        	<font face="微軟正黑體"><B><%= pub[i].Pstatus %><br/>刊登日期：<%= pub[i].Date %></B></font>
                         </td>
                         <td bgcolor="white" align='center' style="vertical-align: middle;">
                             <font face="微軟正黑體">
-                            <a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"><%= pub[i].product %></a><br/>
-                            商品價錢：<%= pub[i].price %> $ </font>
+                            <B><a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"><%= pub[i].product %></B></a><br/>
+                            <B>商品價錢：<%= pub[i].price %> $ </B></font>
                         </td>    
                         <td bgcolor="white" align="center" width="300px"  style="vertical-align: middle;height:11vh;width:20vw">
                             <img src="..\uploadimg\<%= pub[i].Cover %>" style="max-height: 100%;max-width: 100%;">
@@ -36,6 +48,7 @@
                      <% } %> 
     </div>
         </table>
+<body>
      <!--    <nav aria-label="Page navigation example" style="position: fixed;top:90vh;right:46.5vw;" > 
                 <ul class="pagination">
                     <li class="page-item" id="Previous">

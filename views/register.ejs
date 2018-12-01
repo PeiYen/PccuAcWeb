@@ -1,5 +1,5 @@
 <% include register-javascript %>
-<body>
+<body style="background-image: url(../images/backg.jpg);background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;">
 <!-- <h1 align="center">
 	<a href="" class="btn btn-primary pull-right">
 註冊帳號
@@ -7,19 +7,12 @@
 	<a href="" class="btn btn-primary pull-right">
 登入
 	</a>
-</h1>    -->
-<br>
-<br>
-
-		<table border="0" align="center" cellpadding="pixels" valign="center">
+</h1>    --> 
+		<table  border="0" align="center" cellpadding="pixels" valign="center" style="height:70vh">
 			<tr>
-				<td width="720px" rowspan="2" style=" border-bottom-left-radius: 10px;">					    
-					<img src="..\images\pcculogo.png"  width="720" height="360">						
-				</td>
-				<td style="font-size:18px;" width="530px" >	    	
-					<form role="form" name="register" id="register"  method="post" onsubmit="return Checkform();" autocomplete="off" >
-				<P><font face="微軟正黑體"><font size="6px"><b>註冊</b></font></font></P>	
-					<ul>				
+				<td style="font-size:14px;" width="480px" style="height:70vh">	    	
+					<form role="form" name="register" id="register"  method="post" onsubmit="return Checkform();" autocomplete="off" >		
+					<fieldset>				
 					<div class ="form-group" id="mail" style="margin-right: 35px;">
 					<label for="email">帳號（請使用學校信箱）：</label><label id="acc" for="email" class="control-label"></label>
 						<input id="email" class="form-control body" name="email" size="25" type="email" maxlength="40" placeholder="Example：A1234567@g.pccu.edu.tw or @ulive.pccu.edu.tw" onkeyup="isEmail(this.value)">
@@ -41,45 +34,37 @@
 						<input id="Number" name="Number" class="form-control body" type="tel" maxlength="10" placeholder="請輸入開頭為09的手機號碼" onkeyup="Checkphone(this.value)">
 					</div>  <!-- [4] 手機-->
 						<button type="submit" class="btn btn-primary body" name="submit" id="submit" value="reg">註冊帳號</button>	
-					</ul>				
+						<font face="微軟正黑體" style="color:red;">信件有可能會到垃圾郵件哦，要記得查看!</font>	
+						</fieldset>		
 					</form>		
 				</td>
 			</tr>
 		</table>
-
+		<div align="center" style="height:15vh;line-height:15vh;max-width:100%;display:block;text-align:  center;">
+				<img src="../images/down.png" width="224px" style="max-height: 100%;max-width: 100%;">
+		</div>
+		
 <style type="text/css">
 table{
   margin: auto;
-  padding: 20px;
   border-collapse: separate;
   border-spacing: 0;
+  margin-top:15vh;
+  height:50vh;
+  background:rgba(255,255,255,0.6);
+  border-radius: 10px;
 }
 tr{
-  border: 1px solid;
+  border: 0px solid;
 }
 td{
-  border: 3px solid #8B4513;
+  border: 0px solid #8B4513;
   padding: 5px 5px;
   /*background-color: #E0607E;*/
   /*color: #FFF;*/
 }
 
-/*第一欄第一列：左上*/
-tr:first-child td:first-child{
-  border-top-left-radius: 10px;
-}
-/*第一欄最後列：左下*/
-tr:last-child td:first-child{
- 
-}
-/*最後欄第一列：右上*/
-tr:first-child td:last-child{
-  border-top-right-radius: 10px;
-}
-/*最後欄第一列：右下*/
-tr:last-child td:last-child{
-  border-bottom-right-radius: 10px;
-}
+
 </style>
 
 <% include footer %>

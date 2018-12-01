@@ -1,9 +1,11 @@
 <% include header %>
-<div style="border:1px solid #a9c9e2;background-image: linear-gradient(to top , #FFC9C9, #FFFFFF);width:50vw;height:75vh;vertical-align:middle;margin-left:25vw;border-radius:20px;margin-top:5vh;" >
-	<div align="center" valign="middle" style="height:15vh;background-image: linear-gradient(to bottom , #48c6ef, #6f86d6);line-height:15vh;border-top-left-radius:20px;border-top-right-radius:20px;">
-		<font face="微軟正黑體" size="6"><b>評價商品</b></font>
+<body style="background-image: url(../images/blue.jpg);background-repeat: no-repeat;background-attachment: fixed;background-position: center;background-size: cover;">
+	<br><br>
+<div style="border:0px solid #a9c9e2;background-image: linear-gradient(to top , #FFC9C9, #FFFFFF);width:50vw;height:74vh;vertical-align:middle;margin-left:25vw;border-radius:20px;margin-top:5vh;background:rgba(255,255,255,0.5);" >
+	<div align="center" valign="middle" style="height:8vh;background-image: linear-gradient(to bottom , #48c6ef, #6f86d6);line-height:8vh;border-top-left-radius:20px;border-top-right-radius:20px;background-image: linear-gradient(to bottom, #FFFF77 0%, #FF7744 100%);">
+		<font face="微軟正黑體" size="5"><b>評價商品</b></font>
 	</div>
-	<div style="height:50vh;">
+	<div >
 		<br/>
 		<img src="../uploadimg/<%= pub.Cover %>" style="height:15vh;margin-left:2vw;border:1px black solid;">
 		<font face="微軟正黑體" size="5" style="padding-left:2vw;color:blue"><b>商品名稱：<%= pub.product %></b></font>
@@ -19,14 +21,15 @@
 		<form method="post" onsubmit="return check();">
 			<input type="hidden" id="Eva" name="Eva" /> <!-- 評分 -->
 			<b><font face="微軟正黑體" size="4" style="margin-left:2vw;color:red" id="EvaNum"></font></b>
-			<br/>
-			<font face="微軟正黑體" size="4" style="margin-left:2vw;"><b>意見回饋：</b></font><br/>
-			<textarea required="required" style="margin-left:2vw;margin-right:2vw;width:46vw;height:20vh" id="opinion" name="opinion"></textarea>
+			
+			<font face="微軟正黑體" size="4" style="margin-left:0vw;"><b>意見回饋：</b></font><br/>
+			<textarea required="required" style="margin-left:2vw;margin-right:2vw;width:46vw;height:22vh" id="opinion" name="opinion"></textarea>
 			<br/>
 			<button type="submit" class="btn btn-info" style="margin-left:42vw;width:6vw;">評價提交</button>
 		</form>
 	</div>
 </div>
+</body>
 <style type="text/css"> 
 .starWrapper{border:1px solid #FFCC00;padding:5px;width:130px;margin-left:2vw;} 
 .starWrapper img{cursor:pointer;} 

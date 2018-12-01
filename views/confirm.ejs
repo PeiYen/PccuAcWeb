@@ -1,12 +1,12 @@
 <% include nav %>
-<body>
+<body background="../images/background.png">
 	<table class="table table-striped table-bordered " style="line-height:40px;width:80vw;" valign="middle" align="center">
         <% if(buy.length>0) {%> 
-	    <thead>
+	    <thead background="../images/up.jpg">
             <tr>
-                <td align='center' valign="middle"><font face="微軟正黑體"><b>商品</b></font></td>
-                <td align='center' valign="middle"><font face="微軟正黑體"><b>商品圖片</b></font></td>
-                <td align='center' valign="middle"><font face="微軟正黑體"><b>商品進度</b></font></td>
+                <td align='center' valign="middle"><font font font size="4" face="微軟正黑體"><b>商品</b></font></td>
+                <td align='center' valign="middle"><font font font size="4" face="微軟正黑體"><b>商品圖片</b></font></td>
+                <td align='center' valign="middle"><font font font size="4" face="微軟正黑體"><b>商品進度</b></font></td>
             </tr>
         </thead>
         <% for(i=0; i< buy.length; i++) {%>
@@ -76,7 +76,7 @@
         <% } %> 
         <% } %> 
         </table>     
-            <nav aria-label="Page navigation example" style="position: fixed;top:90vh;right:50vw;" > <!-- (100-14)/2 標籤列為14vw -->
+            <nav aria-label="Page navigation example" style="position: fixed;top:90vh;right:45vw;" > <!-- (100-14)/2 標籤列為14vw -->
                 <ul class="pagination">
                     <li class="page-item" id="Previous">
                         <a class="page-link"  aria-label="Previous" style="cursor: pointer;"> <!--cursor: pointer;鼠標變為手指-->
@@ -100,7 +100,7 @@
         <% } %> 
  <script >
         $(document).ready(function() {
-            var rowsShown=5;                             //每頁顯示的行
+            var rowsShown=4;                             //每頁顯示的行
             var rowsTotal=$('#data tr').length;          //獲取總共的行
             var numPages=Math.ceil(rowsTotal/rowsShown); //計算出有多少頁
             var nowPage = 0;                             //當前頁碼     

@@ -1,24 +1,24 @@
 <% include nav %>
-<body>
+<body background="../images/background.png">
 	<div id="container"> <!--頁面邊界-->			
-	    <br>	    
+	    	    
 	    	<form role="form" name="sell" id="sell"  method="post" autocomplete="off" enctype="multipart/form-data" onsubmit="return Sellform();">
 			 	<div class="form-group" >
 			 		<table border="0" width="75%" align="center" cellpadding="pixels" valign="center">
 					    <tr>
-					    	<td colspan="1" width="210px" style="text-align:left;background-image:url(../images/gray.jpg);"><label><font color="black">商品名稱：</font></label></td>
+					    	<td colspan="1" width="210px" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><font color="black">商品名稱：</font></label></td>
 					    	<td colspan="3" style="background:#FFFAFA" id = ""><input maxlength="20" name="Prod" id="Prod" class="form-control input_form" style="width:200px"></td>
 					    </tr>
 					    <tr>
-					    	<td colspan="1"  style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品數量：</font></label></td>
+					    	<td colspan="1"  style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><font color="black">商品數量：</font></label></td>
 					    	<td colspan="3"  style="background:#FFFAFA"><input name="quantity" id="quantity" type="number" placeholder="最大為100"  min="1" max="100" class="form-control input_form" style="width:120px"></td>
 					    </tr>
 					    <tr>
-					    	<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品價格：</font></label></td>
+					    	<td colspan="1" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><font color="black">商品價格：</font></label></td>
 					    	<td colspan="3" style="background:#FFFAFA"><input name="price" id="price" type="number" min="1" max="100000000" class="form-control input_form" style="width:160px"></td>
 					    </tr>
 					    <tr>
-					    <td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><label><font color="black">類別：</font></label></td>
+					    <td colspan="1" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><label><font color="black">類別：</font></label></td>
 						    <td colspan="3" style="background:#FFFAFA">
 						    	<select class="form-control" style="width:120px" id="Classification" name="Classification" >
 						    		<option value="">請選擇.....</option>
@@ -31,14 +31,14 @@
 							</td>
 						</tr>
 						<tr>
-				 			<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label ><font color="black">刊登商品封面</font></label></td>
+				 			<td colspan="1" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label ><font color="black">刊登商品封面</font></label></td>
 				 			<td colspan="3"  style="background:#FFFAFA">
 				    			<input type="file" id="Img1" name="Img1" onchange="openFile1(event)" accept="image/gif, image/jpeg, image/png" >
 				    			<img id="output1" height="120">
 				    		</td>
 				    	</tr>
 						<tr>
-							<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label ><font color="black">上傳商品照片：(上限為9張)</font></label></td>
+							<td colspan="1" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label ><font color="black">上傳商品照片：(上限為9張)</font></label></td>
 				    		<td colspan="3" style="background:#FFFAFA">
 				    			<!-- <img id="output2" height="120">
 				    			<font color="white"><input type="file" id="Img2" name="Img2" onchange="openFile2(event)"></font>
@@ -56,7 +56,7 @@
 							</td>
 				 		</tr>
 				 		<tr>
-				 		<td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg)"><label><font color="black">商品狀況：</font></label><br></td>
+				 		<td colspan="1" style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><font color="black">商品狀況：</font></label><br></td>
 							<td colspan="3" style="background:#FFFAFA">
 								<select class="form-control" style="width:120px" id="Pstatus" name="Pstatus" >
 									<option value="">請選擇.....</option>
@@ -67,7 +67,7 @@
 				        		<label><font color="white">二手：</font><input type=radio name=Pstatus id=Pstatus value="二手"></label>  -->
 				        	</td>
 				        </tr>
-				        <td colspan="1" style="text-align:left;background-image:url(../images/gray.jpg);"><label><font color="black">商品介紹：</font></label><br></td>
+				        <td style="background-image: linear-gradient(to right, #FFFF77 0%, #FF7744 100%);"><label><font color="black">商品介紹：</font></label><br></td>
 				        <td colspan="3" style="background:#FFFAFA">
 				        	<textarea class="form-control"  rows="3" id="Introduce" name="Introduce" style="resize:none;"></textarea>
                 		</td>

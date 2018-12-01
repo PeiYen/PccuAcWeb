@@ -1,22 +1,12 @@
 <% include login-javascript %>
-<body>
-	
-
-		<br>
-		<br>
-		<br>
-		<br>
-
-		<table border="0" align="center" cellpadding="pixels" valign="center">
-			<tr>
-				<td width="720px">					    
-					<img src="..\images\pcculogo.png"  width="720" height="360">						
-				</td>
-				<td style="font-size:18px;" width="530px" >	    	
+<body style="background-image: url(../images/backg.jpg);background-size:cover;background-repeat:no-repeat;overflow-y: hidden; overflow-x: hidden;">
+		<table border="0" align="center"  valign="center">
+			<tr  style="height:60vh;">
+			
+				<td style="font-size:18px;" width="440px" style="height:60vh;">	    	
 					<form  role="form" name="login" id="login"  method="post" autocomplete="off" >
-						<fieldset>
-							<P><font face="微軟正黑體"><font size="6px"><b>登入</b></font></font></P>
-							<ul>
+						<fieldset>				
+							
 								<div class ="form-group" id="mail">
 									<label for="email">學校信箱：</label><label id="acc" for="email" class="control-label"></label>
 									<input id="email" class="form-control" name="email" size="25" type="email" maxlength="40" placeholder="Example：A1234567@g.pccu.edu.tw or @ulive.pccu.edu.tw" onkeyup="isEmail(this.value)">
@@ -39,25 +29,34 @@
 			                                <input type=text class="form-control" name="ChkNum" id="ChkNum" maxlength="6" onkeyup="check()">                         
 			                        </div>			                    
 								<button type="submit" class="btn btn-primary" id="Sublog" onclick="Checkform()" disabled=true>登入</button>
-							</ul>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<font size="4" ><a href="/routes/forget" style="color:red;"><b><u>忘記密碼</u></b></a></font>
+							
 						</fieldset>
 					</form>		
 				</td>
 			</tr>
+
 		</table>
+		<div align="center" style="height:20vh;line-height:20vh;max-width:100%;display:block;text-align:  center;">
+				<img src="../images/down.png" width="224px" style="max-height: 100%;max-width: 100%;">
+		</div>
 
 <style type="text/css">
 table{
   margin: auto;
-  padding: 20px;
+  margin-top:20vh;
   border-collapse: separate;
   border-spacing: 0;
+  background:rgba(255,255,255,0.6);
+  border-radius: 10px;
+}
 }
 tr{
-  border: 1px solid;
+  border: 0px solid;
 }
 td{
-  border: 3px solid #8B4513;
+  border: 0px solid #33FFFF;
   padding: 5px 5px;
   /*background-color: #E0607E;*/
   /*color: #FFF;*/
