@@ -5,6 +5,22 @@
   </a> 
 </p>
 
+## 檔案目錄
+```
+- 文大拍賣網/
+     ├── css
+     |    └──設定Html的排版與美化     
+     ├── images
+     |    └──靜態圖片放置 
+     ├── routes
+     |    └──後端程式(js)
+     ├── views
+     |    └──前端程式(ejs) 
+     ├── app.js (啟動Server)
+     ├── package.json (顯示安裝nodejs套件)
+     └── package-lock.json (詳細顯示安裝nodejs套件)
+          
+```
 ## 使用套件
 ```- MongoDB
 - Nodejs    
@@ -28,22 +44,6 @@
 - Bootstrap
 - Css
 - JQuery
-```
-## 檔案目錄
-```
-- 文大拍賣網/
-     ├── css
-     |    └──設定Html的排版與美化     
-     ├── images
-     |    └──靜態圖片放置 
-     ├── routes
-     |    └──後端程式(js)
-     ├── views
-     |    └──前端程式(ejs) 
-     ├── app.js (啟動Server)
-     ├── package.json (顯示安裝nodejs套件)
-     └── package-lock.json (詳細顯示安裝nodejs套件)
-          
 ```
 ## 啟動網站
 1. 安裝 ```Nodejs```
