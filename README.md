@@ -46,8 +46,8 @@
           
 ```
 ## 啟動網站
-1. 安裝Nodejs
-2. 安裝MongoDB
+1. 安裝 ```Nodejs```
+2. 安裝 ```MongoDB```
 3. ```npm install``` package.json中的nodejs套件
 4. 開啟命令提示字元 cd 到該文件根目錄
 5. 執行```node app.js```即可
