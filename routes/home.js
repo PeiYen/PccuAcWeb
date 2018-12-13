@@ -32,8 +32,7 @@ exports.ghome = function(req, res) {
      else if(params.style == "large"){
           req.session.style = "large;"
      }
-
-
+logincount.findOne({},function(error,count){
 if(params.sort == "priceBIG"){
 	buy.find({Seller:req.session.acc,Orderstatus: { $ne : "交易完成" }},function(err,order){
 	if(params.minprice !="" && params.maxprice !="" && params.minprice!=null &&params.maxprice !=null){
@@ -47,7 +46,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -61,7 +61,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -75,7 +76,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -89,7 +91,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -103,7 +106,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -117,7 +121,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -131,7 +136,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -145,7 +151,8 @@ if(params.sort == "priceBIG"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+          count:count
      	});
 	});
 	}
@@ -161,7 +168,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -175,7 +183,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -189,7 +198,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -203,7 +213,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -217,7 +228,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -231,7 +243,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -245,7 +258,8 @@ if(params.sort == "priceBIG"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -259,7 +273,8 @@ if(params.sort == "priceBIG"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+          count:count
      	});
 	});
 	}
@@ -281,7 +296,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -295,7 +311,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -309,7 +326,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -323,7 +341,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -337,7 +356,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -351,7 +371,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -365,7 +386,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -379,7 +401,8 @@ else if(params.sort == "priceSMALL"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+               count:count
      	});
 	});
 	}
@@ -395,7 +418,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -409,7 +433,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -423,7 +448,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -437,7 +463,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -451,7 +478,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -465,7 +493,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -479,7 +508,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -493,7 +523,8 @@ else if(params.sort == "priceSMALL"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+          count:count
      	});
 	});
 	}
@@ -515,7 +546,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -529,7 +561,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -543,7 +576,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -557,7 +591,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -571,7 +606,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -585,7 +621,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -599,7 +636,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -613,7 +651,8 @@ else if(params.sort == "priceSMALL"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+          count:count
      	});
 	});
 	}
@@ -629,7 +668,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -643,7 +683,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -657,7 +698,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -671,7 +713,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}	
@@ -685,7 +728,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -699,7 +743,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -713,7 +758,8 @@ else if(params.sort == "priceSMALL"){
      		max:req.session.max,
      		name:req.session.user,
                style:req.session.style,
-     		order:order
+     		order:order,
+               count:count
      		});
 		});
 	}
@@ -727,11 +773,13 @@ else if(params.sort == "priceSMALL"){
      	max:req.session.max,
      	name:req.session.user,
           style:req.session.style,
-     	order:order
+     	order:order,
+          count:count
      	});
 	});
 	}
 	}
 	});
 	}
+})
 };

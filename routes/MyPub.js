@@ -62,7 +62,7 @@ exports.post_MyPub = function(req,res){
 		Evaluation.deleteMany({ProId:req.body._id},function(err4,Eva){		//評價
 			if(err4) throw err4;
 		})					
-		shopcart.deleteMany({id:req.body._id},function(err,doc){
+		shopcart.deleteMany({id:req.body._id},function(err,doc){			//追蹤
 			if(err) throw err;
 		})
 		console.log("刪除成功");

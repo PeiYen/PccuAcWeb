@@ -91,9 +91,7 @@ global.userdata = mongoose.model('userdata', { //儲放使用者資料的集合
   Date:String,      //日期
   Time:String       //時間
 });
-userdata.updateMany({},{islive:true},function(err,doc){})
-userdata.updateOne({account:"A4230763@g.pccu.edu.tw"},{islive:true},function(err,doc){})
-// userdata.updateMany({},{islive:false},function(err,doc){})
+// userdata.updateMany({},{islive:true},function(err,doc){})
 //刊登商品
 global.Publish = mongoose.model('Publish',  { //刊登商品集合
   account:{type:String,ref:'userdata'},       //account與登入之帳戶關聯
@@ -149,20 +147,25 @@ global.Evaluation = mongoose.model('Evaluation',{
 });
 
 // userdata.update({account:"A4230763@g.pccu.edu.tw"},{islive:false},function(err,doc){});
-
+//瀏覽計數器
+global.logincount = mongoose.model('logincount',{
+  Count:Number,       //瀏覽次數記錄
+  Date:String,        //日期
+  Time:String         //時間
+});
 var ImgUpload = upload.fields([{name:'Img1',maxCount:1},{name:'Img',maxCount:9}]);//name為欄位名稱 maxCount為最大上傳數限制 ([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
-//根目錄路由
+  //根目錄路由
 router.route('/')
 	.get(home.ghome);
-//註冊路由  
+  //註冊路由  
 router.route("/register")
   .get(reg.get_reg)
   .post(reg.post_reg);
-//登入路由
+  //登入路由
 router.route("/login")
   .get(login.get_log)
   .post(login.post_log);
-//登出路由
+  //登出路由
 router.route("/logout")
   .get(logout.logout);
   //驗證密碼路由

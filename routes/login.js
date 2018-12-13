@@ -10,6 +10,19 @@ exports.get_log = function(req, res) {
     res.render('LoginNo');
   }
   else{
+  logincount.findOne({},function(error,count){
+    if(!count){
+    var login = new logincount({
+      Count:0,       //瀏覽次數記錄
+      Date:day,        //日期
+      Time:now         //時間
+    })
+    login.save(function(err,doc){
+      if (err) throw err ;
+      console.log('新增瀏覽計數器成功');
+    });
+    }
+    })
     res.render("login");
   }
   
@@ -38,6 +51,12 @@ exports.post_log = function(req,res){
               req.session.acc = acc;          //把登入使用者電子郵件放進session供更改會員資料(change)使用
               req.session.phone = doc.phone;  //登入使用者電話
               req.session.isLogin = true;     //登入狀態
+              logincount.updateOne({},{$inc:{Count:1}},function(err,doc){ //商品留言數+1 $inc為+=的概念
+                if(err) throw err;
+                else{
+                  console.log("瀏覽次數+1");
+                }
+              });
           return res.redirect('/');
         }
     });  

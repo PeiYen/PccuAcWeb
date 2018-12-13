@@ -19,16 +19,16 @@ exports.get_pub = function(req,res){
         guestbook.find({productid:params.id},function(err,mes){
           Ans.find({productid:params.id},function(err,ans){
             Evaluation.find({ProId:params.id},function(err,Eva){
-              var length = Eva.length;
-              var count = new Array();
-              var Avg = new Array();
+              var length = Eva.length;  //計算幾個評價
+              var count = new Array();  //計數器
+              var Avg = new Array();    //平均
               var Sum = 0;
               for(i=0;i < length;i++){ 
-                count[i]=Eva[i].Score;
+                count[i]=Eva[i].Score;  
                 Sum += Eva[i].Score;
                 if(i == (length-1)){
                   var a = (Sum/length);
-                  Avg[0] = a.toFixed(1);
+                  Avg[0] = a.toFixed(1);//四捨五入取小數第一位
                 }
               }
               
@@ -141,7 +141,7 @@ if(req.session.isLogin==true){   //防止未登入輸入網址進入頁面
   });	
 	}
   else if(req.body.submit == "Question"){
-    Publish.updateOne({_id:req.body.id},{$inc:{guest:1}},function(err,doc){ //商品留言數+1
+    Publish.updateOne({_id:req.body.id},{$inc:{guest:1}},function(err,doc){ //商品留言數+1 $inc為+=的概念
       if(err) throw err;
     });
     var newmessage = new guestbook({

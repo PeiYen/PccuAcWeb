@@ -48,8 +48,14 @@ exports.post_reset =  function(req, res) {
             to: req.body.retemail,
             subject: '文大拍賣網驗證信', //標題
             // text:'點擊驗證："http://localhost:3000/routes/checkCode?account='+ req.body.email +'&code='+ code + '"',     //內容
-            // 
-            html:'<h2>歡迎註冊文大拍賣網 快來驗證帳號吧!</h2><br/><a href="http://pccuac.hopto.org:3000/routes/checkCode?account='+ req.body.retemail +'&code='+ code + '"><h2>點我驗證帳號!!</h2></a></br><img src="https://i.imgur.com/DwH6uA0.png" width="500" height="350"> '
+            html:'<h2>歡迎註冊文大拍賣網 快來驗證帳號吧!</h2><br/><a href="http://pccuac.hopto.org:3000/routes/checkCode?account='+ req.body.retemail +'&code='+ code + '"><h2>點我驗證帳號!!</h2></a></br><a href="https://imgur.com/DwH6uA0"><img src="cid:images"  width="500" height="350"/></a>',
+            attachments:[ //內嵌圖片
+            {
+            filename : 'pcculogo.png',    //圖片名稱
+            path: './images/pcculogo.png',//圖片路徑
+            cid: 'images' //圖片Cid 必須在img src"cid:cid設定的名稱"才能嵌入
+            }
+            ]
           };
 
           transporter.sendMail(mailOptions, function(error, info) {

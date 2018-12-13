@@ -39,7 +39,15 @@ exports.post_forget =  function(req, res) {
             subject: '文大拍賣網用戶資訊', //標題
             // text:'點擊驗證："http://localhost:3000/routes/checkCode?account='+ req.body.email +'&code='+ code + '"',     //內容
             // 
-            html:'<h2><font style="color:#33CCFF"><u>'+ doc.name + '</u></font>&nbsp;&nbsp;&nbsp;&nbsp;,您好</h2><br/><h2>您的密碼為："<font color="red">'+ doc.password +'</font>"</h2></br><img src="https://i.imgur.com/DwH6uA0.png" width="500" height="350"> '
+            html:'<h2><font style="color:#33CCFF"><u>'+ doc.name + '</u></font>&nbsp;&nbsp;&nbsp;&nbsp;,您好</h2><br/><h2>您的密碼為："<font color="red">'+ doc.password +'</font>"</h2></br><a href="https://imgur.com/DwH6uA0"><img src="cid:images"  width="500" height="350"/></a>',
+            attachments:[ //內嵌圖片
+            {
+            filename : 'pcculogo.png',    //圖片名稱
+            path: './images/pcculogo.png',//圖片路徑
+            cid: 'images' //圖片Cid 必須在img src"cid:cid設定的名稱"才能嵌入
+            }
+            ]
+         
           };
 
           transporter.sendMail(mailOptions, function(error, info) {
