@@ -51,7 +51,7 @@
 3. ```npm install``` package.json中的nodejs套件
 4. 開啟命令提示字元 cd 到該文件根目錄
 5. 執行```node app.js```即可
-也可以使用 ```npm install nodemon -g``` 後到第5部執行 ```nodemon app.js``` 
+也可以使用 ```npm install nodemon -g``` 後到第5步執行 ```nodemon app.js``` 
 
 
 
