@@ -38,7 +38,7 @@
      |    └──靜態圖片放置 
      ├── routes
      |    └──後端程式(js)
-     ├──
+     ├── views
      |    └──前端程式(ejs) 
      ├── app.js (啟動Server)
      ├── package.json (顯示安裝nodejs套件)
