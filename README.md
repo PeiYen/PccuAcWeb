@@ -51,7 +51,7 @@
 3. ```npm install```  package.json中的nodejs套件
 4. 開啟命令提示字元 cd 到該文件根目錄
 5. 開啟MongoDB的資料夾 ```bin/mongod.exe```
-6. 執行```node app.js```即可.   
+6. 執行```node app.js```即可 
 也可以使用 ```npm install nodemon -g``` 後到第6步執行 ```nodemon app.js``` 
 
 
