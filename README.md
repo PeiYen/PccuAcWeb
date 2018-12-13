@@ -41,7 +41,8 @@
      ├──
      |    └──前端程式(ejs) 
      ├── app.js (啟動Server)
-     └── package.json (顯示安裝nodejs套件)
+     ├── package.json (顯示安裝nodejs套件)
+     └── package-lock.json (詳細顯示安裝nodejs套件)
           
 ```
 
