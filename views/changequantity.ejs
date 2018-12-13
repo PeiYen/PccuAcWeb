@@ -5,42 +5,37 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading" style="background-image:url(../images/up.jpg);">
-                        <h3 class="panel-title"><font face="微軟正黑體" size="5"><B>更改商品資訊</B></font></h3>
+                    <div class="panel-heading" style=" background-image: linear-gradient(to bottom, #FFFF77 0%, #FF7744 100%);">
+                        <h3 class="panel-title" ><font face="微軟正黑體" size="5"><B>更改商品資訊</B></font></h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" method="post" autocomplete="off"> <!--action 為 後端change-->
                             <fieldset>
                                 <div class="form-group" id="newName">
-                                    <font face="微軟正黑體" size="4"><B >商品名稱：</B><b style="color:blue;"><%= pub.product %></b></font><br/><br/>
+                                    <font face="微軟正黑體" size="4"><B >商品名稱：</B><b style="color:blue;"></b></font>
+                                    <br/><br/>
+                                    <input type="text" class="form-control" maxlength="40" name="name" id="name" placeholder="原商品名稱：<%= pub.product %>" ><br/>
+                                    </font>
                                     <img src="../uploadimg/<%= pub.Cover %>"  style="max-height: 100%;max-width: 100%;border:1px black solid;"><br/><br/>
-                                    <font face="微軟正黑體" size="3"><B>商品價格：</B><b style="color:blue;"><%= pub.price %></b></font><br/>
+                                    <font face="微軟正黑體" size="3"><B>商品價格：</B><b style="color:blue;"></b>
+                                    <input type="number" name="price" id="price"  min="1" max="100000000" placeholder="原價格：<%= pub.price %>" style="width:160px"> 
+                                    <br/><br/>
+                                    </font>
                                     <font face="微軟正黑體" size="3"><B>商品狀態：</B><b style="color:blue;"><%= pub.Pstatus %></b></font><br/>
                                     <font face="微軟正黑體" size="3"><B>商品類別：</B><b style="color:blue;"><%= pub.Classification %></b></font><br/><br/>
                                     <label for="newName" class="control-label" id="Npas"></label>
                                     <font face="微軟正黑體" size="3">
-                                    <b>數量：</b><br/><br/>
-                                    <input class="form-control"  type="number" min="0" max="100" name="quantity" id="quantity" placeholder="原商品數量：<%= pub.quantity %>"  maxlength="20" onkeyup="check()">
+                                    <b>商品數量：</b>
+                                    <input  type="number" min="0" max="100" name="quantity" id="quantity" placeholder="原商品數量：<%= pub.quantity %>"   style="width:160px">
+                                    <br/>
                                     </font><br/>
                                     <font face="微軟正黑體" size="3">
                                     <b>商品介紹：</b><br/><br/>
-                                    <textarea class="form-control"  rows="3" id="Introduce" name="Introduce" placeholder="原商品介紹：<%= pub.Introduce %>" onkeyup="check()"  style="resize:none;"></textarea>
+                                    <textarea class="form-control"  rows="3" id="Introduce" name="Introduce"  style="resize:none;"><%= pub.Introduce %></textarea>
                                     </font>
                                 </div>
-                                <input style="width:100px;" type="submit" class="btn btn-lg btn-success btn-block" value="更改" id="submit" name="submit" disabled = "true" onclick="return true;">                           
+                                <input style="width:100px;" type="submit" class="btn btn-lg btn-success btn-block" value="更改" id="submit" name="submit" onclick="return true;">                           
                             </fieldset>
-                            <script>        
-                                function check(){              
-                                    var quantity = document.getElementById('quantity').value;
-                                    var Introduce = document.getElementById('Introduce').value;
-                                    if((quantity == "") && (Introduce =="")){
-                                        document.getElementById('submit').disabled = true;
-                                    }
-                                    else{
-                                        document.getElementById('submit').disabled = false;
-                                    }
-                                }
-                            </script>
                         </form>
                     </div>
                 </div>

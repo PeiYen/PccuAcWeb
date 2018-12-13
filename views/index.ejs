@@ -13,7 +13,7 @@
             </div>
 						
 						<% if (loginStatus) { %>
-<body background="../images/background.png" style="overflow-y: hidden; overflow-x: hidden;" >
+
 	 		<div class="collapse navbar-collapse" id="myNavbar">	
 
 	  			<ul class="nav navbar-nav navbar-left" >
@@ -43,20 +43,34 @@
 				<ul class="nav navbar-nav navbar-right">	
 					<li><a href="mailto:pccuauctionwebsite07@gmail.com"><font size="4" face="微軟正黑體"><span class="
 					glyphicon glyphicon-envelope"></span>聯絡我們</font></a></li>
-					<li><a href="/routes/mydata"><font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font></a></li>
+					<li>
+						<a  style="cursor:auto;">
+							<font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-user"></span><%= name %>,您好</font>
+						</a>
+
+					</li>	
+					<li>					
+					<a href="/routes/Mydata">
+						<font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-cog"></span><u>設定</u></font>
+					</a>
+					</li>
 							<!--登出-->		
 				    <li><a href="/routes/logout"><font size="4" face="微軟正黑體"><span class="glyphicon glyphicon-log-out"></span>登出</font></a></li>
 				</ul>
 			</div>	
 		</div>
 	</nav>
-
+<body background="../images/background.png" style="" >
 
 
 
 	<div id="container"> <!--頁面邊界-->	
-		<div class="col-md-2" style="top:-20px;left:-20px;">
-			<div  style="background:rgba(255,255,255,0.7);height:100vh;width:16.3vw">
+		<div class="col-md-2" style="margin-top:-20px;left:-20px;">
+			<% if(pub.length>0) {%>
+			<div  style="background:rgba(255,255,255,0.7);height:170vh;width:16.3vw">
+				<% } else {%>
+				<div  style="background:rgba(255,255,255,0.7);height:94vh;width:16.3vw">
+				<% } %>
 				<!-- <aside> -->
 		        <!-- 	<div style="padding:10px 14px;" align="center"> 邊界距離
 		        	<form>
@@ -203,7 +217,7 @@
 
                     </tbody>
 	    		</table>
-	    		<nav aria-label="Page navigation example" style="position: fixed ;top:89.5vh;right:38.3vw;" > <!-- (100-16)/2 標籤列為16vw -->
+	    		<nav aria-label="Page navigation example" style="top:89.5vh;right:38.3vw;" > <!-- (100-16)/2 標籤列為16vw -->
 	    			<ul class="pagination">
 	    				<li class="page-item" id="Previous">
       						<a class="page-link"  aria-label="Previous" style="cursor: pointer;"> <!--cursor: pointer;鼠標變為手指-->
@@ -307,10 +321,10 @@
 
 			 <!--large直向-->	
 
-			<div style="margin-left:3vw;display:none;" class="col-md-9 tabcontent" id="large" >	    		
+			<div style="margin-left:3vw;display:none;" class="col-md-9 tabcontent" align="center" id="large" >	    		
 	    		<% if(pub.length>0) {%>
 	    		<table class="table-bordered" >
-	    			<thead style="height:5vh;background-image: linear-gradient(to bottom, #FFFF77 0%, #FF7744 100%);">
+	    			<thead style="background-image: linear-gradient(to bottom, #FFFF77 0%, #FF7744 100%);">
 	    				<tr>
 	    					<td colspan="4" align='center' valign="middle">
 	    						<font font size="4" face="微軟正黑體">
@@ -327,7 +341,7 @@
                     		<% for(i=0; i<=(pub.length-1) ; i++) {%>
                     		<% if((i%4==0)) {%>
                     		<tr>
-                            <td  bgcolor="white"  align='center' style="vertical-align: middle;height:34vh;width:18vw;">
+                            <td  bgcolor="white"  align='center' style="vertical-align: middle;height:36vh;width:18vw;">
                             	<div style="width:17vw;height:20vh;line-height:20vh;max-width:100%;display:block;text-align:center;">
 	                            	<a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"  target="_blank">
 	                            	<img src="uploadimg\<%= pub[i].Cover %>" style="max-height: 100%;max-width: 100%;">
@@ -340,7 +354,7 @@
                             	<font face="微軟正黑體" size="2">商品價錢：<%= pub[i].price %> $</font>
                             </td >
                             <% } else { %>
-                            <td  bgcolor="white"  align='center' style="vertical-align: middle;height:34vh;width:18vw;">
+                            <td  bgcolor="white"  align='center' style="vertical-align: middle;height:36vh;width:18vw;">
                             	<div style="width:17vw;height:20vh;line-height:20vh;max-width:100%;display:block;text-align:center;">
 	                            	<a href="/routes/pub?Pubname=<%= pub[i].product %>&id=<%= pub[i].id %>"  target="_blank">
 	                            	<img src="uploadimg\<%= pub[i].Cover %>" style="max-height: 100%;max-width: 100%;">
@@ -359,7 +373,8 @@
 
                     </tbody>
 	    		</table>
-	    		<nav aria-label="Page navigation example" style="position: fixed ;top:89.5vh;right:38.3vw;" > <!-- (100-16)/2 標籤列為16vw -->
+	    		<br/>
+	    		<nav aria-label="Page navigation example"  > <!-- (100-16)/2 標籤列為16vw -->
 	    			<ul class="pagination">
 	    				<li class="page-item" id="Previous">
       						<a class="page-link"  aria-label="Previous" style="cursor: pointer;"> <!--cursor: pointer;鼠標變為手指-->
@@ -381,7 +396,69 @@
 	    			<font face="微軟正黑體" size="6">找不到該項目之商品</font>
 	    		<% } %>	
 				<!--商品內容-->	
+
 			</div>
+			<br/>
+			<div class="col-md-9 tabcontent" align="center" style="margin-left:3vw;">
+				<!-- <div style="height:60vh">
+					<img src="./images/黃色.png" style="max-height:100%;max-width:100%;">
+				</div> -->
+			<div id="myCarousel" class="carousel slide" style="height:60vh;width:60vw;background:#DDDDDD;border:1px">
+			    <!-- 輪播（Carousel）指標 -->
+			    <ol class="carousel-indicators"><!--豆豆指示器-->
+			        <li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
+			        <li data-target="#myCarousel" data-slide-to="1"></li>
+			        <li data-target="#myCarousel" data-slide-to="2"></li>
+			        <li data-target="#myCarousel" data-slide-to="3"></li>
+			        <li data-target="#myCarousel" data-slide-to="4"></li>
+			    </ol>   
+			    <!-- 輪播（Carousel）項目 -->
+			    <div class="carousel-inner">
+			        <div class="item active" style="height:60vh;width:60vw;">
+			            <img src="./images/廣告1.jpg" alt="First slide" style="max-height:100%;max-width:100%;">
+			            <div class="carousel-caption d-none d-md-block">
+						    <a href="https://www.instagram.com/yellow7322/?hl=zh-tw" style="color:white;" target="_blank"><font face="微軟正黑體" size="5"><b>威仁攝影集</b></font></a>
+						 </div>
+			        </div>
+			        <div class="item" style="height:60vh;width:60vw;">
+			            <img src="./images/廣告2.jpg" alt="Second slide" style="max-height:100%;max-width:100%;">
+			             <div class="carousel-caption d-none d-md-block">
+						    <a href="https://www.instagram.com/yellow7322/?hl=zh-tw" style="color:white;" target="_blank"><font face="微軟正黑體" size="5"><b>威仁攝影集</b></font></a>
+						 </div>
+			        </div>
+			        <div class="item" style="height:60vh;width:60vw;">
+			            <img src="./images/廣告3.jpg" alt="Third slide" style="max-height:100%;max-width:100%;">
+			             <div class="carousel-caption d-none d-md-block">
+						    <a href="https://www.instagram.com/yellow7322/?hl=zh-tw" style="color:white;" target="_blank"><font face="微軟正黑體" size="5"><b>威仁攝影集</b></font></a>
+						 </div>
+			        </div>
+			        <div class="item" style="height:60vh;width:60vw;">
+			            <img src="./images/廣告4.jpg" alt="fourth slide" style="max-height:100%;max-width:100%;">
+			             <div class="carousel-caption d-none d-md-block">
+						    <a href="https://www.instagram.com/yellow7322/?hl=zh-tw" style="color:white;" target="_blank"><font face="微軟正黑體" size="5"><b>威仁攝影集</b></font></a>
+						 </div>
+			        </div>
+			        <div class="item" style="height:60vh;width:60vw;">
+			            <img src="./images/廣告5.jpg" alt="fifth slide" style="max-height:100%;max-width:100%;">
+			             <div class="carousel-caption d-none d-md-block">
+						    <a href="https://www.instagram.com/yellow7322/?hl=zh-tw" style="color:white;" target="_blank"><font face="微軟正黑體" size="5"><b>威仁攝影集</b></font></a>
+						 </div>
+			        </div>
+			    </div>
+			    <!-- 輪播（Carousel）導航 -->
+			    <a class="carousel-control left" href="#myCarousel" 
+			       data-slide="prev"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+			    <a class="carousel-control right" href="#myCarousel" 
+			       data-slide="next"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+				<br/>
+				<font face="微軟正黑體" size="6">
+					目前累積瀏覽次數：<%= count.Count %>
+				</font>
+			</div>
+		<script>
+			$('.carousel').carousel()//自動輪播
+		</script>
 	<script >
 		$(document).ready(function() {
 	      	var rowsShown=2;                             //每頁顯示的行
