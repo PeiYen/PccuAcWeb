@@ -1,7 +1,7 @@
 # 專題網站
 <p align="center">
   <a href="http://pccuac.hopto.org:3000/">
-    <img src="https://i.imgur.com/DwH6uA0.png"  width="400" height="200" title="source: imgur.com" />
+    <img src="https://i.imgur.com/DwH6uA0.png"  width="400" height="200" title="source: imgur.com" /><br/>
     (點擊圖片連結至專題網站)
   </a> 
 </p>
