@@ -33,7 +33,7 @@
 ```
 文大拍賣網/
      ├── css
-     |    └──設定Html格式     
+     |    └──設定Html的排版與美化     
      ├── images
      |    └──靜態圖片放置 
      ├── routes
@@ -45,12 +45,14 @@
      └── package-lock.json (詳細顯示安裝nodejs套件)
           
 ```
+## 啟動網站
+1. 安裝Nodejs
+2. 安裝MongoDB
+3. ```npm install``` package.json中的nodejs套件
+4. 開啟命令提示字元 cd 到該文件根目錄
+5. 執行```node app.js```即可
+也可以使用 ```npm install nodemon -g``` 後到第5部執行 ```nodemon app.js``` 
 
 
 
 
-
-
-2. 1
-2. 2
-2. ```4```
